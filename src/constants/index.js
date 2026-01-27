@@ -117,7 +117,6 @@ export const myProjects = [
       },
     ],
   },
-
   {
     id: 1,
     title: "SupportGenie – AI Customer Support",
@@ -349,134 +348,6 @@ export const myProjects = [
       },
     ],
   },
-  {
-    id: 5,
-    title: "Inventory Management Dashboard",
-    description:
-      "A full-stack inventory management application built to track orders, payments, and user analytics efficiently.",
-    subDescription: [
-      "Built with React, Node.js, Express, and MongoDB for complete end-to-end functionality.",
-      "Integrated Firebase for user authentication and secure access control.",
-      "Visualized data using Recharts for online/offline orders, expenses, and delivery returns.",
-      "Used Material UI and Tailwind CSS for a modern and responsive UI.",
-      "Implemented Redux for state management and data synchronization across the dashboard.",
-      "Payment analytics includes multiple types such as credit card, debit card, and online.",
-      "Charts and graphs include: income vs expenses, payment type breakdown, delivered vs return orders, online vs offline orders.",
-      "Deployed on Netlify for fast and scalable hosting.",
-    ],
-    href: "https://luminous-nasturtium-f0931f.netlify.app/",
-    logo: "",
-    image: "/assets/projects/project-1.png",
-    tags: [
-      {
-        id: 1,
-        name: "React",
-        path: "/assets/logos/react.svg",
-      },
-      {
-        id: 2,
-        name: "Node.js",
-        path: "/assets/logos/nodejs.svg",
-      },
-      {
-        id: 3,
-        name: "MongoDB",
-        path: "/assets/logos/mongodb.svg",
-      },
-      {
-        id: 4,
-        name: "Redux",
-        path: "/assets/logos/redux.svg",
-      },
-      {
-        id: 5,
-        name: "Material UI",
-        path: "/assets/logos/mui.svg",
-      },
-      {
-        id: 6,
-        name: "TailwindCSS",
-        path: "/assets/logos/tailwindcss.svg",
-      },
-      {
-        id: 7,
-        name: "Firebase",
-        path: "/assets/logos/firebase.svg",
-      },
-      {
-        id: 8,
-        name: "Netlify",
-        path: "/assets/logos/netlify.svg",
-      },
-      {
-        id: 9,
-        name: "Recharts",
-        path: "/assets/logos/recharts.svg",
-      },
-    ],
-  },
-  {
-    id: 6,
-    title: "StyleStore E-Commerce Website",
-    description:
-      "A modern and responsive fashion e-commerce platform featuring a clean UI and a seamless user experience.",
-    subDescription: [
-      "Built with React, Redux, Tailwind CSS, and Material UI for robust UI and state management.",
-      "Implemented responsive grid-based layout optimized for mobile and desktop using a mobile-first approach.",
-      "Used Fake API for dynamic product listings and category filtering.",
-      "Designed a dark-mode-inspired aesthetic using a Gray-800 and Yellow-400 color palette for a luxurious shopping feel.",
-      "Incorporated Google Maps for location-based features.",
-      "Added real-time functionality with Socket.io for user notifications or live updates.",
-      "Typography choices include clean sans-serif fonts like Poppins or Roboto with bold headings and readable body text.",
-      "Interactive UI elements such as hover animations and highlighted call-to-action buttons enhance engagement.",
-      "Navigation and product cards use modern visual hierarchy and minimalistic icons (via React Icons).",
-    ],
-    href: "https://style-store-phi.vercel.app/",
-    logo: "",
-    image: "/assets/projects/project-2.png",
-    tags: [
-      {
-        id: 1,
-        name: "React",
-        path: "/assets/logos/react.svg",
-      },
-      {
-        id: 2,
-        name: "Redux",
-        path: "/assets/logos/redux.svg",
-      },
-      {
-        id: 3,
-        name: "TailwindCSS",
-        path: "/assets/logos/tailwindcss.svg",
-      },
-      {
-        id: 4,
-        name: "Material UI",
-        path: "/assets/logos/mui.svg",
-      },
-      {
-        id: 5,
-        name: "Socket.io",
-        path: "/assets/logos/socketio.svg",
-      },
-      {
-        id: 6,
-        name: "Google Maps",
-        path: "/assets/logos/googlemaps.svg",
-      },
-      {
-        id: 7,
-        name: "React Icons",
-        path: "/assets/logos/react-icons.svg",
-      },
-      {
-        id: 8,
-        name: "FakeAPI",
-        path: "/assets/logos/api.svg",
-      },
-    ],
-  },
 ];
 
 export const mySocials = [
@@ -499,13 +370,14 @@ export const mySocials = [
 
 export const experiences = [
   {
-    title: "Software Developer",
+    title: "Software Engineer",
     job: "Infusyx Services",
     date: "June 2025 – Present",
     contents: [
-      "✅ Developed and optimized dynamic web and mobile applications using React.js and React Native, ensuring high performance and scalability across diverse projects.",
+      "✅ Developed and optimized dynamic web and mobile applications using React.js and Next.js, ensuring high performance and scalability across diverse projects.",
       "✅ Worked closely with design and backend teams to translate complex requirements into intuitive, user-friendly interfaces, significantly improving user engagement.",
       "Implemented modern UI/UX practices with a focus on responsive design, ensuring seamless experiences across devices and cross-browser compatibility.",
+      "✅ Managed source control and collaborated via GitHub, implemented CI/CD workflows for automated testing and deployment using GitHub Actions.",
     ],
   },
   {
@@ -515,7 +387,6 @@ export const experiences = [
     contents: [
       "✅ Developed and maintained reusable UI components using React, Next.js, and TypeScript, integrating APIs and managing state with Redux/Context API.",
       "Handled end-to-end feature implementation, from designing frontend flows to debugging and fixing UI/UX bugs across browsers and screen sizes.",
-      "✅ Managed source control and collaborated via GitHub, implemented CI/CD workflows for automated testing and deployment using GitHub Actions.",
       "Actively participated in code reviews, contributed to architectural decisions, and enforced best practices to maintain code quality.",
     ],
   },
@@ -524,7 +395,7 @@ export const experiences = [
     job: "AppyStack Pvt Ltd",
     date: "Jan 2024 - Oct 2024",
     contents: [
-      "✅ Led the development of high-performance, scalable applications using React.js, Next.js (TypeScript), and delivering seamless user experiences.",
+      "✅ Led the development of high-performance, scalable applications using React.js and React Native and delivering seamless user experiences.",
       "✅ Designed and optimized intuitive UI components, ensuring cross-platform consistency and boosting user engagement.",
       "Implemented cutting-edge UI/UX strategies, streamlining workflows and reducing user drop-offs, resulting in higher retention rates.",
       "Refactored frontend architecture, improving efficiency, cutting load times by 50%, and enhancing overall system responsiveness.",

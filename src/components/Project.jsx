@@ -41,7 +41,7 @@ const Project = ({
         </button>
       </div>
 
-      <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent h-[1px] w-full" />
+      <div className="bg-linear-to-r from-transparent via-neutral-700 to-transparent h-px w-full" />
       {isHidden && (
         <ProjectDetails
           title={title}

@@ -9,7 +9,7 @@ const ReviewCard = ({ img, name, username, body }) => {
   return (
     <figure
       className={twMerge(
-        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4 border-gray-50/[.1] bg-gradient-to-r bg-indigo to-storm hover:bg-royal hover-animation"
+        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4 border-gray-50/10 bg-linear-to-r bg-indigo to-storm hover:bg-royal hover-animation"
       )}
     >
       <div className="flex flex-row items-center gap-2">
@@ -47,8 +47,8 @@ export default function Testimonial() {
             <ReviewCard key={review.username} {...review} />
           ))}
         </Marquee>
-        <div className="absolute inset-y-0 left-0 w-1/4 pointer-events-none bg-gradient-to-r from-primary"></div>
-        <div className="absolute inset-y-0 right-0 w-1/4 pointer-events-none bg-gradient-to-l from-primary"></div>
+        <div className="absolute inset-y-0 left-0 w-1/4 pointer-events-none bg-linear-to-r from-primary"></div>
+        <div className="absolute inset-y-0 right-0 w-1/4 pointer-events-none bg-linear-to-l from-primary"></div>
       </div>
     </div>
   );

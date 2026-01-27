@@ -23,7 +23,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="container mx-auto max-w-7xl scroll-smooth">
+    <div className="contain scroll-smooth">
       <Navbar />
       <Hero />
       <About />
