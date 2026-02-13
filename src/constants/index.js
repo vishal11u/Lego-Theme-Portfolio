@@ -370,10 +370,13 @@ export const mySocials = [
 
 export const experiences = [
   {
-    title: "Software Engineer",
-    job: "Infusyx Services",
-    date: "June 2025 – Present",
+    title: "Frontend Developer",
+    job: "Ioweb3",
+    date: "Oct 2024 - Present",
     contents: [
+      "✅ Developed and maintained reusable UI components using React, Next.js, and TypeScript, integrating APIs and managing state with Redux/Context API.",
+      "Handled end-to-end feature implementation, from designing frontend flows to debugging and fixing UI/UX bugs across browsers and screen sizes.",
+      "Actively participated in code reviews, contributed to architectural decisions, and enforced best practices to maintain code quality.",
       "✅ Developed and optimized dynamic web and mobile applications using React.js and Next.js, ensuring high performance and scalability across diverse projects.",
       "✅ Worked closely with design and backend teams to translate complex requirements into intuitive, user-friendly interfaces, significantly improving user engagement.",
       "Implemented modern UI/UX practices with a focus on responsive design, ensuring seamless experiences across devices and cross-browser compatibility.",
@@ -381,23 +384,13 @@ export const experiences = [
     ],
   },
   {
-    title: "Frontend Developer",
-    job: "Ioweb3",
-    date: "Oct 2024 - May 2025",
-    contents: [
-      "✅ Developed and maintained reusable UI components using React, Next.js, and TypeScript, integrating APIs and managing state with Redux/Context API.",
-      "Handled end-to-end feature implementation, from designing frontend flows to debugging and fixing UI/UX bugs across browsers and screen sizes.",
-      "Actively participated in code reviews, contributed to architectural decisions, and enforced best practices to maintain code quality.",
-    ],
-  },
-  {
-    title: "React Developer",
+    title: "Software Developer",
     job: "AppyStack Pvt Ltd",
     date: "Jan 2024 - Oct 2024",
     contents: [
       "✅ Led the development of high-performance, scalable applications using React.js and React Native and delivering seamless user experiences.",
       "✅ Designed and optimized intuitive UI components, ensuring cross-platform consistency and boosting user engagement.",
-      "Implemented cutting-edge UI/UX strategies, streamlining workflows and reducing user drop-offs, resulting in higher retention rates.",
+      "•Architected full-stack web and mobile applications using React.js, React Native, Node.js, Express, and PostgreSQL, delivering end-to-end solutions across multiple domains including HRMS, healthcare, cybersecurity, and e-learning",
       "Refactored frontend architecture, improving efficiency, cutting load times by 50%, and enhancing overall system responsiveness.",
     ],
   },
