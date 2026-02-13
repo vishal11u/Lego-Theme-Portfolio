@@ -100,7 +100,7 @@ const Navbar = () => {
             <motion.a
               whileHover={{ y: -4 }}
               whileTap={{ y: 0 }}
-              href="/Vishal-Shitole-Resume-.pdf"
+              href="/Vishal-Shitole-Resume.pdf"
               download
               className="flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-black uppercase text-white bg-orange-500 hover:bg-orange-600 shadow-md border-b-4 border-orange-700 transition-all"
             >
@@ -197,7 +197,7 @@ const Navbar = () => {
                 <motion.a
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  href="/Vishal-Shitole-Resume-.pdf"
+                  href="/Vishal-Shitole-Resume.pdf"
                   download
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-lg text-sm font-black uppercase text-white bg-orange-500 shadow-md border-b-4 border-orange-700"
                 >
