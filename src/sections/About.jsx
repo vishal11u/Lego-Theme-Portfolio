@@ -512,8 +512,8 @@ const About = () => {
                     Hi, I'm Vishal Shitole
                   </h3>
                   <p className="text-white text-lg font-bold leading-relaxed">
-                    Over the last 2.4+ years, I developed my frontend and
-                    backend dev skills to deliver dynamic software and web
+                    Over the last 2.2+ years, I developed my frontend and
+                    backend dev skills to deliver dynamic software web and mobile
                     applications.
                   </p>
                 </div>
