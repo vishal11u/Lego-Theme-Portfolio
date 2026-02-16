@@ -1,6 +1,6 @@
 export const myProjects = [
   {
-    id: 7,
+    id: 1,
     title: "FormPilot – Full-Stack Form Submission SaaS",
     description:
       "FormPilot is a flexible, developer-centric SaaS for building, embedding, and managing forms via API or simple HTML/React integrations.",
@@ -70,7 +70,7 @@ export const myProjects = [
     ],
   },
   {
-    id: 8,
+    id: 2,
     title: "Frontix – Open Source npm Package",
     description:
       "A modern, lightweight utility toolkit for frontend developers, offering 25+ utilities for string, date, validation, async, and deep object operations. Built with TypeScript (ESM + CJS), tree-shakable, and optimized for bundle size and performance. Published as an npm package (MIT licensed).",
@@ -118,21 +118,26 @@ export const myProjects = [
     ],
   },
   {
-    id: 1,
-    title: "SupportGenie – AI Customer Support",
+    id: 7,
+    title: "TradeX – Paper Trading Platform",
     description:
-      "SupportGenie is a powerful AI-powered SaaS platform that simplifies AI-driven customer support.",
+      "TradeX is a professional paper trading simulator for Indian stock and options markets with real-time trading, AI analytics, and institutional-grade tools for risk-free trading practice.",
     subDescription: [
-      "Built with Next.js and TypeScript, optimized for high performance, scalability, and maintainability.",
-      "Integrated Clerk for secure user authentication and Supabase for real-time backend services and Supabase database management.",
-      "Designed an engaging and responsive UI using Tailwind CSS, Framer Motion, GSAP, and shadcn/ui components.",
-      "Implemented an AI-powered chatbot using OpenAI to assist users with order tracking, queries, and real-time support.",
-      "Enabled Purchase Subscription using Razorpay with nation and internation Payments Accepted",
-      "Deployed on Vercel with automated CI/CD workflows for fast and reliable updates.",
+      "Built with Next.js 15, TypeScript, and React 19 for high-performance real-time trading simulation.",
+      "Zustand state management handles complex trading logic with 800ms price update intervals for live market simulation.",
+      "Integrated TradingView charts and Yahoo Finance API for real-time market data, price feeds, and technical analysis.",
+      "Features real-time option chains with full Greeks calculations (Delta, Theta, Gamma, Vega, IV) and lot-based trading for NIFTY, BANKNIFTY, FINNIFTY.",
+      "AI Trading Psychometrician analyzes journal entries and detects trading psychology patterns like 'Monday morning alpha' and 'volatility trap'.",
+      "Strategy Backtester allows testing trading strategies on simulated historical data before live paper trading.",
+      "Risk Manager implements daily loss limits, max trades per day, and circuit breakers for automatic account protection.",
+      "Global News & Sentiment Feed provides Bloomberg-style market updates with sentiment analysis (POSITIVE/NEGATIVE/NEUTRAL) and impact ratings.",
+      "Community Hub with social trading leaderboard, posts, likes, and comments for learning from other traders.",
+      "Developed as installable PWA with offline support, responsive design, and standalone app experience.",
+      "Portfolio management with ₹10L starting virtual balance, live P&L tracking, position management, and comprehensive order book.",
     ],
-    href: "https://ai-customer-support-sass.vercel.app/",
+    href: "https://trade-x-paper-trading-app.vercel.app/",
     logo: "",
-    image: "/assets/projects/project-3.png",
+    image: "/assets/projects/TradeX-Paper-Trading.png",
     tags: [
       {
         id: 1,
@@ -146,43 +151,53 @@ export const myProjects = [
       },
       {
         id: 3,
-        name: "Clerk",
-        path: "/assets/logos/clerk.svg",
+        name: "Lightweight Charts",
+        path: "/assets/logos/react.svg",
       },
       {
         id: 4,
-        name: "Supabase",
-        path: "/assets/logos/supabase.svg",
+        name: "Zustand",
+        path: "/assets/logos/zustand.svg",
       },
       {
         id: 5,
-        name: "TailwindCSS",
-        path: "/assets/logos/tailwindcss.svg",
+        name: "TradingView",
+        path: "/assets/logos/tradingview.svg",
       },
       {
         id: 6,
-        name: "Framer Motion",
-        path: "/assets/logos/framer-motion.svg",
+        name: "Yahoo Finance",
+        path: "/assets/logos/yahoo-finance.svg",
       },
       {
         id: 7,
-        name: "GSAP",
-        path: "/assets/logos/gsap.svg",
+        name: "PWA",
+        path: "/assets/logos/pwa.svg",
       },
       {
         id: 8,
-        name: "shadcn/ui",
-        path: "/assets/logos/shadcn.svg",
+        name: "Options Trading",
+        path: "/assets/logos/trading.svg",
       },
       {
         id: 9,
-        name: "AI Chatbot",
-        path: "/assets/logos/openai.svg",
+        name: "AI Analytics",
+        path: "/assets/logos/ai.svg",
+      },
+      {
+        id: 10,
+        name: "Real-time Data",
+        path: "/assets/logos/realtime.svg",
+      },
+      {
+        id: 11,
+        name: "Rechart",
+        path: "/assets/logos/realtime.svg",
       },
     ],
   },
   {
-    id: 2,
+    id: 4,
     title: "Trusty Voice – Testimonial & Feedback System",
     description:
       "A modern SaaS platform for collecting and showcasing customer testimonials and feedback, featuring AI-powered insights, secure user authentication, and flexible embedding options.",
@@ -259,7 +274,7 @@ export const myProjects = [
     ],
   },
   {
-    id: 3,
+    id: 5,
     title: "EnvShare – Secure Environment Sharing Tool",
     description:
       "A lightweight and secure tool for sharing environment variables with AES-GCM encryption, auto-expiration, and read limits — all in a privacy-first architecture.",
@@ -303,7 +318,7 @@ export const myProjects = [
     ],
   },
   {
-    id: 4,
+    id: 6,
     title: "Modifio – Free File Converter",
     description:
       "A sleek and powerful online tool for unlimited multimedia file conversions including video, audio, and image formats.",
