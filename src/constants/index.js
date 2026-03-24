@@ -386,7 +386,7 @@ export const mySocials = [
 export const experiences = [
   {
     title: "Frontend Developer",
-    job: "Ioweb3",
+    job: "Ioweb3 Technologies Pvt Ltd",
     date: "Oct 2024 - Present",
     contents: [
       "✅ Developed and maintained reusable UI components using React, Next.js, and TypeScript, integrating APIs and managing state with Redux/Context API.",
