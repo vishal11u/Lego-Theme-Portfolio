@@ -315,7 +315,7 @@ const HeroText = () => {
         className="text-xl md:text-3xl text-gray-200 mb-8 font-bold"
       >
         <span className="bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-          FULL STACK DEVELOPER
+          Software Engineer
         </span>
         <br />
         BUILDING AWESOME THINGS, BRICK BY BRICK

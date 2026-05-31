@@ -13,9 +13,9 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-import { FaReact } from "react-icons/fa";
-import { IoLogoJavascript } from "react-icons/io5";
-import { SiTypescript } from "react-icons/si";
+import { FaAws, FaDocker, FaReact } from "react-icons/fa";
+import { IoLogoJavascript, IoLogoVercel } from "react-icons/io5";
+import { SiMui, SiShadcnui, SiTypescript } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { FaGithub } from "react-icons/fa";
 import { SiNextdotjs } from "react-icons/si";
@@ -248,26 +248,31 @@ const EnhancedLegoCard = ({
 // Animated Tech Stack
 const AnimatedTechStack = () => {
   const techs = [
-    { name: "HTML5", color: "bg-orange-400", icon: <FaHtml5 /> },
-    { name: "CSS3", color: "bg-blue-500", icon: <FaCss3Alt /> },
+    { name: "HTML", color: "bg-orange-400", icon: <FaHtml5 /> },
+    { name: "CSS", color: "bg-blue-500", icon: <FaCss3Alt /> },
     { name: "JavaScript", color: "bg-yellow-500", icon: <IoLogoJavascript /> },
     { name: "React", color: "bg-cyan-500", icon: <FaReact /> },
     { name: "Next.js", color: "bg-black", icon: <SiNextdotjs /> },
-    { name: "Node", color: "bg-green-600", icon: <FaNode /> },
+    { name: "TypeScript", color: "bg-[#3178C6]", icon: <SiTypescript /> },
+    { name: "Node.js", color: "bg-green-600", icon: <FaNode /> },
     { name: "MongoDB", color: "bg-green-500", icon: <SiMongodb /> },
-    { name: "PostgreSQL", color: "bg-blue-400", icon: <BiLogoPostgresql /> },
-    { name: "TypeScript", color: "bg-blue-600", icon: <SiTypescript /> },
-    { name: "TailwindCSS", color: "bg-teal-500", icon: <RiTailwindCssFill /> },
+    { name: "PostgreSQL", color: "bg-[#0064a5]", icon: <BiLogoPostgresql /> },
+    { name: "TailwindCSS", color: "bg-[#06B6D4]", icon: <RiTailwindCssFill /> },
     { name: "GitHub", color: "bg-gray-900", icon: <FaGithub /> },
     { name: "Redux", color: "bg-indigo-600", icon: <SiRedux /> },
     { name: "Jest", color: "bg-orange-500", icon: <SiJest /> },
     {
       name: "React Native",
-      color: "bg-blue-600",
+      color: "bg-[#61DBFB]",
       icon: <TbBrandReactNative />,
     },
     { name: "Firebase", color: "bg-yellow-400", icon: <BiLogoFirebase /> },
     { name: "Supabase", color: "bg-green-500", icon: <RiSupabaseFill /> },
+    { name: "AWS", color: "bg-[#FF9900]", icon: <FaAws /> },
+    { name: "Docker", color: "bg-[#1D63ED]", icon: <FaDocker /> },
+    { name: "Vercel", color: "bg-black", icon: <IoLogoVercel /> },
+    { name: "MUI", color: "bg-[#1976d2]", icon: <SiMui /> },
+    { name: "Shadcn UI", color: "bg-black", icon: <SiShadcnui /> },
   ];
 
   return (
@@ -513,8 +518,8 @@ const About = () => {
                   </h3>
                   <p className="text-white text-lg font-bold leading-relaxed">
                     Over the last 2.4+ years, I developed my frontend and
-                    backend dev skills to deliver dynamic software web and mobile
-                    applications.
+                    backend dev skills to deliver dynamic software web and
+                    mobile applications.
                   </p>
                 </div>
 
