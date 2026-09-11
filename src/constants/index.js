@@ -385,12 +385,12 @@ export const mySocials = [
 
 export const experiences = [
   {
-    title: "Frontend Developer",
-    job: "Ioweb3 Technologies Pvt Ltd",
-    date: "Oct 2024 - Present",
+    title: "Software Developer",
+    job: "Infusyx Services",
+    date: "June 2025 - Current",
     contents: [
-      "✅ Engineered high-performance web applications using React.js, Next.js, and TypeScript, optimized for 500+ concurrent users with fast uptime and sub-2-second load times via code-splitting, lazy loading, and performance tuning",
-      "Built and maintained CI/CD pipelines with GitHub Actions for automated testing, builds, and zero-downtime deployments to Vercel, including automated rollback on failure",
+      "✅ Engineered high-performance web applications using React.js, Next.js, and TypeScript, optimized for 1000+ concurrent users with fast uptime and sub-2-second load times via code-splitting, lazy loading, and performance tuning",
+      "Built and maintained CI/CD pipelines with GitHub Actions for automated testing, builds, and zero-downtime deployments, including automated rollback on failure.",
       "Designed and maintained a scalable, reusable component library using TypeScript, Material UI, and Shadcn UI, establishing design system standards that improved team velocity and code consistency.",
       "✅ Optimized React applications using memoization, virtual scrolling, and bundle analysis, reducing bundle size by 40% and significantly improving Core Web Vitals scores",
       "✅ Worked closely with design and backend teams to translate complex requirements into intuitive, user-friendly interfaces, significantly improving user engagement.",
@@ -399,13 +399,13 @@ export const experiences = [
   },
   {
     title: "Software Developer",
-    job: "AppyStack Pvt Ltd",
-    date: "Jan 2024 - Oct 2024",
+    job: "Ioweb3 Technologies",
+    date: "April 2024 - May 2025",
     contents: [
       "✅ Full-stack web and mobile applications using React.js, React Native, Node.js, Express, and PostgreSQL, delivering end-to-end solutions across multiple domains including HRMS, healthcare, cybersecurity, and e-learning.",
       "✅ Implemented RESTful APIs with Node.js/Express featuring JWT authentication, role-based access control, input validation, rate limiting, and comprehensive error handling with logging.",
-      "uilt cross-platform mobile applications with React Native, implementing offline-first, local storage (AsyncStorage), background sync, push notifications (Firebase), and deep linking for seamless UX.",
-      "Optimized database queries with indexing and aggregation pipelines, reducing API response times and improving overall system performance under high traffic",
+      "Built cross-platform mobile applications with React Native, implementing offline-first, local storage (AsyncStorage), background sync, push notifications (Firebase), and deep linking for seamless UX.",
+      "Optimized database queries with indexing and aggregation pipelines, reducing API response times and improving overall system performance under high traffic.",
     ],
   },
 ];
