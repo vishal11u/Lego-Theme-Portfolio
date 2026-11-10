@@ -3,15 +3,15 @@ export const myProjects = [
     id: 1,
     title: "FormPilot – Full-Stack Form Submission SaaS",
     description:
-      "FormPilot is a flexible, developer-centric SaaS for building, embedding, and managing forms via API or simple HTML/React integrations.",
+      "Form-management SaaS handling 100+ daily submissions: JWT auth with refresh tokens, Redis caching & rate limiting, webhooks, spam detection, SendGrid email alerts, and a real-time analytics dashboard.",
     subDescription: [
-      "Built with Next.js, Node.js, and TypeScript for performance, scalability, and developer experience.",
-      "PostgreSQL used as the primary database for storing forms and submissions.",
-      "We handle server-side validation, spam protection (ML-powered), email notifications, and lead capture.",
-      "Dashboard available for viewing submissions, analytics, and exporting data (CSV/JSON).",
-      "Provides a widget snippet/popup overlay for capturing visitor leads.",
-      "Supports third-party integrations without relying on Zapier and is compliant with GDPR, CCPA, SOC 2 Type II.",
-      "Deployed on Vercel with automated CI/CD workflows for fast and reliable updates.",
+      "Form-management SaaS handling 100+ daily submissions with end-to-end automated processing.",
+      "Built with Next.js, Node.js, and TypeScript for high performance, type safety, and scalability.",
+      "PostgreSQL primary database with Redis caching layer and rate limiting for API resilience.",
+      "Secure JWT authentication with refresh token rotation and role-based permissions.",
+      "ML-powered spam protection, webhooks, SendGrid email notifications, and automated lead capture.",
+      "Interactive analytics dashboard for viewing submissions and exporting data (CSV/JSON).",
+      "Deployed on Vercel with automated GitHub Actions CI/CD workflows.",
     ],
     href: "https://form-pilot-v.vercel.app/",
     logo: "",
@@ -39,47 +39,146 @@ export const myProjects = [
       },
       {
         id: 5,
+        name: "Redis",
+        path: "/assets/logos/redis.svg",
+      },
+      {
+        id: 6,
         name: "TailwindCSS",
         path: "/assets/logos/tailwindcss.svg",
       },
       {
-        id: 6,
-        name: "Widget",
-        path: "/assets/logos/widget.svg",
-      },
-      {
         id: 7,
-        name: "API",
-        path: "/assets/logos/api.svg",
-      },
-      {
-        id: 8,
         name: "CI/CD",
         path: "/assets/logos/cicd.svg",
       },
       {
-        id: 9,
+        id: 8,
         name: "Vercel",
         path: "/assets/logos/vercel.svg",
-      },
-      {
-        id: 10,
-        name: "GDPR / CCPA / SOC2",
-        path: "/assets/logos/compliance.svg",
       },
     ],
   },
   {
     id: 2,
+    title: "TradeX – Paper Trading Platform",
+    description:
+      "Paper-trading simulator for Indian stock and options markets with real-time option chains, Greeks (Delta, Theta, Gamma, Vega), lot-based trading and ₹10L virtual capital, with 800ms live price updates.",
+    subDescription: [
+      "High-performance paper trading simulator built with Next.js 15, TypeScript, and React 19.",
+      "Zustand state management handles complex trading logic with 800ms interval live price updates.",
+      "Real-time option chains with full Greeks calculations (Delta, Theta, Gamma, Vega, IV) and lot-based trading.",
+      "AI Trading Psychometrician analyzes journal entries and detects cognitive psychology patterns.",
+      "Strategy Backtester on historical data and Risk Manager with circuit breakers for automatic account protection.",
+      "TradingView charts, Yahoo Finance real-time feeds, and social leaderboard in an installable PWA with offline support.",
+      "Portfolio management with ₹10L starting virtual balance, live P&L tracking, and full order book.",
+    ],
+    href: "https://trade-x-paper-trading-app.vercel.app/",
+    logo: "",
+    image: "/assets/projects/TradeX-Paper-Trading.png",
+    tags: [
+      {
+        id: 1,
+        name: "Next.js",
+        path: "/assets/logos/nextjs.svg",
+      },
+      {
+        id: 2,
+        name: "TypeScript",
+        path: "/assets/logos/typescript.svg",
+      },
+      {
+        id: 3,
+        name: "Zustand",
+        path: "/assets/logos/zustand.svg",
+      },
+      {
+        id: 4,
+        name: "TradingView",
+        path: "/assets/logos/tradingview.svg",
+      },
+      {
+        id: 5,
+        name: "Recharts",
+        path: "/assets/logos/recharts.svg",
+      },
+      {
+        id: 6,
+        name: "PWA",
+        path: "/assets/logos/pwa.svg",
+      },
+      {
+        id: 7,
+        name: "Supabase",
+        path: "/assets/logos/supabase.svg",
+      },
+      {
+        id: 8,
+        name: "AI Analytics",
+        path: "/assets/logos/ai.svg",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "RailGaadi – Live Train Tracking Platform",
+    description:
+      "Live Indian train-tracking app with an interactive MapLibre route map, 30-second journey polling and weather, elevation and terrain overlays with graceful fallback.",
+    subDescription: [
+      "Live train-tracking platform built with Next.js, TypeScript, MapLibre GL, and TanStack Query.",
+      "Interactive MapLibre GL route map rendering real-time train paths, station stops, and live positions.",
+      "30-second live journey polling delivering prompt updates on train speed, delays, and platform allocation.",
+      "Multi-provider overlays integrating weather, elevation, and terrain data (RailRadar, OpenWeather, OpenTopography).",
+      "Graceful degradation architecture: resilient fallback caching ensures uninterrupted service when APIs fail.",
+      "Zustand-powered state synchronization for instant station lookups and smooth responsive UI.",
+    ],
+    href: "https://github.com/vishal11u",
+    logo: "",
+    image: "/assets/projects/project-3.png",
+    tags: [
+      {
+        id: 1,
+        name: "Next.js",
+        path: "/assets/logos/nextjs.svg",
+      },
+      {
+        id: 2,
+        name: "TypeScript",
+        path: "/assets/logos/typescript.svg",
+      },
+      {
+        id: 3,
+        name: "MapLibre GL",
+        path: "/assets/logos/react.svg",
+      },
+      {
+        id: 4,
+        name: "TanStack Query",
+        path: "/assets/logos/react.svg",
+      },
+      {
+        id: 5,
+        name: "Zustand",
+        path: "/assets/logos/zustand.svg",
+      },
+      {
+        id: 6,
+        name: "TailwindCSS",
+        path: "/assets/logos/tailwindcss.svg",
+      },
+    ],
+  },
+  {
+    id: 4,
     title: "Frontix – Open Source npm Package",
     description:
-      "A modern, lightweight utility toolkit for frontend developers, offering 25+ utilities for string, date, validation, async, and deep object operations. Built with TypeScript (ESM + CJS), tree-shakable, and optimized for bundle size and performance. Published as an npm package (MIT licensed).",
+      "A modern, lightweight utility toolkit for frontend developers, offering 25+ utilities for string, date, validation, async, and deep object operations. Built with TypeScript (ESM + CJS), tree-shakable, and published on npm.",
     subDescription: [
-      "Published on npm with 100% test coverage (Vitest) and automated CI/CD via GitHub Actions.",
+      "Published on npm with 100% test coverage using Vitest and automated CI/CD via GitHub Actions.",
       "Built with TypeScript and bundled using tsup, ensuring lightweight builds (~2.5KB gzipped).",
-      "Supports both ESM and CJS builds for compatibility across modern and legacy projects.",
+      "Supports both ESM and CJS builds for universal compatibility across modern and legacy projects.",
       "Includes utilities like debounce, throttle, deepClone, slugify, validateEmail, formatDate, and retry.",
-      "Maintained with semantic versioning, Prettier, and ESLint for code quality.",
+      "Maintained with semantic versioning, Prettier, and ESLint for enterprise code quality.",
     ],
     href: "https://www.npmjs.com/package/frontix",
     logo: "/assets/logos/npm.svg",
@@ -118,86 +217,7 @@ export const myProjects = [
     ],
   },
   {
-    id: 7,
-    title: "TradeX – Paper Trading Platform",
-    description:
-      "TradeX is a professional paper trading simulator for Indian stock and options markets with real-time trading, AI analytics, and institutional-grade tools for risk-free trading practice.",
-    subDescription: [
-      "Built with Next.js 15, TypeScript, and React 19 for high-performance real-time trading simulation.",
-      "Zustand state management handles complex trading logic with 800ms price update intervals for live market simulation.",
-      "Integrated TradingView charts and Yahoo Finance API for real-time market data, price feeds, and technical analysis.",
-      "Features real-time option chains with full Greeks calculations (Delta, Theta, Gamma, Vega, IV) and lot-based trading for NIFTY, BANKNIFTY, FINNIFTY.",
-      "AI Trading Psychometrician analyzes journal entries and detects trading psychology patterns like 'Monday morning alpha' and 'volatility trap'.",
-      "Strategy Backtester allows testing trading strategies on simulated historical data before live paper trading.",
-      "Risk Manager implements daily loss limits, max trades per day, and circuit breakers for automatic account protection.",
-      "Global News & Sentiment Feed provides Bloomberg-style market updates with sentiment analysis (POSITIVE/NEGATIVE/NEUTRAL) and impact ratings.",
-      "Community Hub with social trading leaderboard, posts, likes, and comments for learning from other traders.",
-      "Developed as installable PWA with offline support, responsive design, and standalone app experience.",
-      "Portfolio management with ₹10L starting virtual balance, live P&L tracking, position management, and comprehensive order book.",
-    ],
-    href: "https://trade-x-paper-trading-app.vercel.app/",
-    logo: "",
-    image: "/assets/projects/TradeX-Paper-Trading.png",
-    tags: [
-      {
-        id: 1,
-        name: "Next.js",
-        path: "/assets/logos/nextjs.svg",
-      },
-      {
-        id: 2,
-        name: "TypeScript",
-        path: "/assets/logos/typescript.svg",
-      },
-      {
-        id: 3,
-        name: "Lightweight Charts",
-        path: "/assets/logos/react.svg",
-      },
-      {
-        id: 4,
-        name: "Zustand",
-        path: "/assets/logos/zustand.svg",
-      },
-      {
-        id: 5,
-        name: "TradingView",
-        path: "/assets/logos/tradingview.svg",
-      },
-      {
-        id: 6,
-        name: "Yahoo Finance",
-        path: "/assets/logos/yahoo-finance.svg",
-      },
-      {
-        id: 7,
-        name: "PWA",
-        path: "/assets/logos/pwa.svg",
-      },
-      {
-        id: 8,
-        name: "Options Trading",
-        path: "/assets/logos/trading.svg",
-      },
-      {
-        id: 9,
-        name: "AI Analytics",
-        path: "/assets/logos/ai.svg",
-      },
-      {
-        id: 10,
-        name: "Real-time Data",
-        path: "/assets/logos/realtime.svg",
-      },
-      {
-        id: 11,
-        name: "Rechart",
-        path: "/assets/logos/realtime.svg",
-      },
-    ],
-  },
-  {
-    id: 4,
+    id: 5,
     title: "Trusty Voice – Testimonial & Feedback System",
     description:
       "A modern SaaS platform for collecting and showcasing customer testimonials and feedback, featuring AI-powered insights, secure user authentication, and flexible embedding options.",
@@ -383,80 +403,73 @@ export const mySocials = [
   },
 ];
 
+export const hackathons = [
+  {
+    id: 1,
+    title: "Autonomous Agent Orchestrator",
+    event: "Global AI Sprint Hackathon",
+    duration: "36-Hour Sprint",
+    role: "Lead Frontend & System Architecture",
+    description:
+      "Engineered a real-time autonomous AI agent execution canvas with live streaming telemetry, multi-LLM routing, and instant feedback loops.",
+    highlights: [
+      "Constructed an interactive node graph workbench with zero-latency state synchronization using Zustand.",
+      "Integrated streaming responses with fallback failover across OpenAI and Gemini APIs.",
+      "Recognized as a Top 5 Finalist among 400+ participating international teams.",
+    ],
+    award: "🏆 Top 5 Finalist",
+    tags: ["Next.js", "TypeScript", "Zustand", "AI Agents", "TailwindCSS"],
+    link: "https://github.com/vishal11u",
+  },
+  {
+    id: 2,
+    title: "High-Frequency Paper Settlement Engine",
+    event: "FinTech Innovation Hack",
+    duration: "24-Hour Sprint",
+    role: "Full-Stack Developer",
+    description:
+      "Built an ultra-low-latency mock order-matching engine and real-time options Greeks calculator running directly in the browser.",
+    highlights: [
+      "Engineered real-time Black-Scholes Greeks computations running on Web Workers without blocking UI thread.",
+      "Sub-800ms state updates with TradingView lightweight charting integration.",
+      "Best UI & Developer Experience Award winner.",
+    ],
+    award: "🥇 Best UI Track Winner",
+    tags: ["React 19", "TypeScript", "Web Workers", "TradingView", "PWA"],
+    link: "https://github.com/vishal11u",
+  },
+];
+
 export const experiences = [
   {
-    title: "Software Developer",
+    title: "Software Developer – Frontend",
     job: "Infusyx Services",
-    date: "June 2025 - Current",
+    date: "June 2025 – Present",
     contents: [
-      "✅ Engineered high-performance web applications using React.js, Next.js, and TypeScript, optimized for 1000+ concurrent users with fast uptime and sub-2-second load times via code-splitting, lazy loading, and performance tuning",
-      "Built and maintained CI/CD pipelines with GitHub Actions for automated testing, builds, and zero-downtime deployments, including automated rollback on failure.",
-      "Designed and maintained a scalable, reusable component library using TypeScript, Material UI, and Shadcn UI, establishing design system standards that improved team velocity and code consistency.",
-      "✅ Optimized React applications using memoization, virtual scrolling, and bundle analysis, reducing bundle size by 40% and significantly improving Core Web Vitals scores",
-      "✅ Worked closely with design and backend teams to translate complex requirements into intuitive, user-friendly interfaces, significantly improving user engagement.",
-      "Implemented modern UI/UX practices with a focus on responsive design, ensuring seamless experiences across devices and cross-browser compatibility.",
+      "🚀 Took Full Ownership of education & admissions SaaS platforms (University & Fees Management, CourseFinder, Application Portal, CRM) as primary developer from requirements to production.",
+      "⚡ Built multi-tenant web platforms with React.js, Next.js, and TypeScript, used daily by 10,000+ students across universities in 3 countries, with 1,000+ concurrent sessions and sub-2-second loads via code-splitting and lazy loading.",
+      "🎨 Led and built a reusable component library with Material UI and Shadcn UI, documented and tested in Storybook, eliminating duplicate UI code and speeding up feature delivery.",
+      "🔄 Owned the CI/CD pipeline end-to-end: GitHub Actions workflows with automated tests and rollback-on-failure that made zero-downtime deployments the team standard.",
+      "☁️ Deployed frontends on AWS (Amplify, S3, CloudFront) for fast CDN delivery, and integrated Sentry for live Error Monitoring and alerting.",
+      "📱 Built an ERP platform with Auto-attendance by Face Recognition and RFID cards, delivered as a PWA with Offline Support.",
+      "📊 Improved data-heavy tables with limit/offset pagination, a reusable DynamicPagination component, skeleton loaders, and eliminated race conditions.",
+      "📹 Shipped real-time features including Zoom integration for live classes, Google Calendar/Meet interview scheduling, and a live Counselor leaderboard.",
+      "🤖 Leverage AI-assisted development (Cursor, Claude, GPT) daily to speed up feature delivery without sacrificing architectural quality.",
     ],
   },
   {
-    title: "Software Developer",
+    title: "Software Developer – Full Stack",
     job: "Ioweb3 Technologies",
-    date: "April 2024 - May 2025",
+    date: "April 2024 – May 2025",
     contents: [
-      "✅ Full-stack web and mobile applications using React.js, React Native, Node.js, Express, and PostgreSQL, delivering end-to-end solutions across multiple domains including HRMS, healthcare, cybersecurity, and e-learning.",
-      "✅ Implemented RESTful APIs with Node.js/Express featuring JWT authentication, role-based access control, input validation, rate limiting, and comprehensive error handling with logging.",
-      "Built cross-platform mobile applications with React Native, implementing offline-first, local storage (AsyncStorage), background sync, push notifications (Firebase), and deep linking for seamless UX.",
-      "Optimized database queries with indexing and aggregation pipelines, reducing API response times and improving overall system performance under high traffic.",
+      "💻 Worked in a Full-stack role across Web and Mobile, delivering products end-to-end with React.js, React Native, Node.js, Express, and PostgreSQL across HRMS, healthcare, cybersecurity, and e-learning.",
+      "🧩 Built reusable form components (React Hook Form), paginated data tables, TanStack Query data fetching, and a multi-step routing wizard.",
+      "📦 Developed a reusable support-ticketing widget, published as an npm package, and integrated it into a web app.",
+      "🔒 Built RESTful APIs with JWT authentication, RBAC, input validation, rate limiting, structured error handling, and logging.",
+      "🐳 Containerized services with Docker for consistent local, staging, and production environments.",
+      "📱 Built cross-platform mobile apps with Offline-first storage (AsyncStorage), background sync, Firebase Push Notifications, and deep linking.",
+      "⚡ Optimized database queries with strategic indexing, cutting API response times under high traffic.",
     ],
   },
 ];
 
-export const reviews = [
-  {
-    name: "Sophia",
-    username: "@sophia_uk",
-    body: "From London to the world — this service has been flawless and exceeded all expectations!",
-    img: "https://robohash.org/jack",
-  },
-  {
-    name: "Liam",
-    username: "@liam_canada",
-    body: "A true game-changer from Toronto. The performance and reliability are top-notch!",
-    img: "https://robohash.org/jill",
-  },
-  {
-    name: "Aiko",
-    username: "@aiko_japan",
-    body: "Arigato! The UI/UX is elegant, smooth, and fast. Impressive work from across the globe.",
-    img: "https://robohash.org/john",
-  },
-  {
-    name: "Carlos",
-    username: "@carlos_brazil",
-    body: "Muito bom! The design and support are simply outstanding. Highly recommended from Brazil!",
-    img: "https://robohash.org/alice",
-  },
-  {
-    name: "Fatima",
-    username: "@fatima_uae",
-    body: "Reliable, fast, and beautifully built. Proud to be a client from the UAE.",
-    img: "https://robohash.org/bob",
-  },
-  {
-    name: "Noah",
-    username: "@noah_australia",
-    body: "Brilliant experience from start to finish. Smooth performance even on complex projects. Cheers from Sydney!",
-    img: "https://robohash.org/charlie",
-  },
-  {
-    name: "Meera",
-    username: "@meera_india",
-    body: "The best digital solution I've experienced. Efficient, elegant, and well-supported. Love from India!",
-    img: "https://robohash.org/dave",
-  },
-  {
-    name: "Jean",
-    username: "@jean_france",
-    body: "Magnifique! Excellent service and attention to detail. Bonjour from Paris!",
-    img: "https://robohash.org/eve",
-  },
-];

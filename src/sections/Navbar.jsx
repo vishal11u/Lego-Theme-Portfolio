@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Menu, X, Mail, Download } from "lucide-react";
+import { Github, Menu, X, Mail, Download, Radio, Terminal } from "lucide-react";
 
 function Navigation({ closeMenu }) {
-  const navItems = ["home", "about", "work", "contact", "projects"];
+  const navItems = [
+    { id: "about", label: "01 // ABOUT" },
+    { id: "projects", label: "02 // SYSTEMS" },
+    { id: "hackathons", label: "03 // ARENA" },
+    { id: "work", label: "04 // EXPERIENCE" },
+    { id: "contact", label: "05 // CONTACT" },
+  ];
 
   const handleClick = (id) => {
     const el = document.getElementById(id);
@@ -14,209 +20,199 @@ function Navigation({ closeMenu }) {
   };
 
   return (
-    <ul className="flex flex-col gap-4 sm:flex-row sm:gap-2 text-sm font-black uppercase">
-      {navItems.map((item, index) => {
-        // LEGO brick colors rotation
-        const colors = ['bg-red-500', 'bg-blue-500', 'bg-yellow-400', 'bg-green-500', 'bg-purple-500'];
-        const color = colors[index % colors.length];
-        
-        return (
-          <motion.li 
-            key={item}
-            whileHover={{ y: -4, scale: 1.05 }}
-            whileTap={{ y: 0 }}
+    <ul className="flex flex-col lg:flex-row items-center gap-1 xl:gap-2">
+      {navItems.map((item) => (
+        <li key={item.id} className="w-full lg:w-auto">
+          <button
+            onClick={() => handleClick(item.id)}
+            className="w-full text-left lg:text-center px-3 py-1.5 rounded-md font-mono text-xs tracking-wider text-slate-300 hover:text-cyan-400 hover:bg-white/[0.04] border border-transparent hover:border-white/[0.08] transition-all duration-200 cursor-pointer"
           >
-            <button
-              onClick={() => handleClick(item)}
-              className={`relative w-full md:px-6 py-2 ${color} cursor-pointer text-white rounded-lg shadow-md border-b-4 border-opacity-50 border-black hover:shadow-lg transition-all duration-200`}
-            >
-              {/* LEGO studs on button */}
-              <div className="absolute -top-1 left-1/2 -translate-x-1/2 flex gap-1">
-                <div className="w-2 h-2 bg-black bg-opacity-20 rounded-full" />
-                <div className="w-2 h-2 bg-black bg-opacity-20 rounded-full" />
-              </div>
-              {item.charAt(0).toUpperCase() + item.slice(1)}
-            </button>
-          </motion.li>
-        );
-      })}
+            {item.label}
+          </button>
+        </li>
+      ))}
     </ul>
   );
 }
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setTime(
+        now.toLocaleTimeString("en-US", {
+          timeZone: "Asia/Kolkata",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        })
+      );
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 shadow-xl border-b-8 border-yellow-500">
-      {/* LEGO baseplate pattern on navbar */}
-      <div className="absolute inset-0 opacity-10">
-        {Array.from({ length: 3 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-full h-px bg-black"
-            style={{ top: `${(i + 1) * 25}%` }}
-          />
-        ))}
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-4 py-4 sm:py-5 flex items-center justify-between">
-        {/* Logo - LEGO Style */}
-        <motion.a
-          href="/"
-          whileHover={{ scale: 1.05, rotate: 5 }}
-          whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg font-black text-xl uppercase shadow-lg border-b-4 border-red-700"
-        >
-          <div className="w-8 h-8 bg-yellow-400 rounded flex items-center justify-center border-2 border-red-700">
-            <div className="grid grid-cols-2 gap-0.5">
-              <div className="w-1.5 h-1.5 bg-red-700 rounded-full" />
-              <div className="w-1.5 h-1.5 bg-red-700 rounded-full" />
-              <div className="w-1.5 h-1.5 bg-red-700 rounded-full" />
-              <div className="w-1.5 h-1.5 bg-red-700 rounded-full" />
-            </div>
+    <header className="fixed inset-x-0 top-0 z-50">
+      {/* Top Telemetry Strip */}
+      <div className="w-full bg-[#05070a]/90 border-b border-white/[0.06] backdrop-blur-md px-4 py-1 hidden sm:flex items-center justify-between text-[11px] font-mono text-slate-400">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1.5">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span className="text-emerald-400 font-semibold tracking-wide">
+              SYSTEM ONLINE
+            </span>
           </div>
-          Vishal
-        </motion.a>
+          <span className="text-white/20">|</span>
+          <span className="flex items-center gap-1 text-slate-300">
+            <Radio size={12} className="text-cyan-400" />
+            PUNE, IN [{time || "18:00:00"} IST]
+          </span>
+          <span className="text-white/20">|</span>
+        </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-4">
-          <Navigation />
-
-          {/* Action Buttons - LEGO Style */}
-          <div className="flex gap-3 ml-4">
-            <motion.a
-              whileHover={{ y: -4 }}
-              whileTap={{ y: 0 }}
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=shitolevishal29@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-black uppercase text-white bg-green-500 hover:bg-green-600 shadow-md border-b-4 border-green-700 transition-all"
-            >
-              <Mail size={16} />
-              <span className="hidden xl:inline">Hire Me</span>
-            </motion.a>
-            
-            <motion.a
-              whileHover={{ y: -4 }}
-              whileTap={{ y: 0 }}
-              href="/Vishal-Shitole-Resume.pdf"
-              download
-              className="flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-black uppercase text-white bg-orange-500 hover:bg-orange-600 shadow-md border-b-4 border-orange-700 transition-all"
-            >
-              <Download size={16} />
-              <span className="hidden xl:inline">Resume</span>
-            </motion.a>
-            
-            <motion.a
-              whileHover={{ y: -4, rotate: 5 }}
-              whileTap={{ y: 0 }}
-              href="https://github.com/vishal11u"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-2 rounded-lg text-sm font-black uppercase bg-white text-gray-900 hover:bg-gray-100 shadow-md border-b-4 border-gray-300 transition-all"
-            >
-              <Github size={16} />
-              <span className="hidden xl:inline">GitHub</span>
-            </motion.a>
-          </div>
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <div className="flex items-center gap-3 lg:hidden">
-          <motion.a
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
-            href="https://github.com/vishal11u"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-lg bg-white text-gray-900 shadow-md border-b-4 border-gray-300"
-          >
-            <Github size={20} />
-          </motion.a>
-
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-lg bg-yellow-400 text-gray-900 shadow-md border-b-4 border-yellow-600 focus:outline-none"
-          >
-            <AnimatePresence mode="wait">
-              {isOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X size={24} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu size={24} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
+        <div className="flex items-center gap-3">
+          <span className="text-cyan-400/90 font-bold">
+            LATENCY: &lt;800ms
+          </span>
+          <span className="text-white/20">|</span>
+          <span className="text-slate-400">STATUS: OPEN FOR NEW ROLES</span>
         </div>
       </div>
 
-      {/* Mobile Navigation - LEGO Style */}
+      {/* Main Cockpit Navbar */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-2.5">
+        <div className="cockpit-panel rounded-xl px-4 py-2.5 flex items-center justify-between shadow-2xl border border-white/[0.08]">
+          {/* Logo / Terminal Tag */}
+          <motion.a
+            href="#home"
+            whileHover={{ scale: 1.02 }}
+            className="flex items-center gap-2 group cursor-pointer"
+          >
+            <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:border-cyan-400 group-hover:bg-cyan-500/20 transition-all">
+              <Terminal size={16} />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-mono text-sm font-bold text-white tracking-tight flex items-center gap-1">
+                vishal.shitole
+                <span className="text-cyan-400 animate-pulse font-mono font-normal">
+                  _
+                </span>
+              </span>
+              <span className="text-[10px] font-mono text-slate-400 -mt-0.5">
+                2.6+ YRS FULL-STACK DEV
+              </span>
+            </div>
+          </motion.a>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-4">
+            <Navigation />
+
+            {/* Action Buttons */}
+            <div className="flex items-center gap-2.5 pl-4 border-l border-white/[0.08]">
+              <motion.a
+                whileHover={{ y: -1 }}
+                whileTap={{ y: 0 }}
+                href="/Vishal-Shitole-Resume.pdf"
+                download
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-xs text-slate-200 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] hover:border-cyan-400/40 transition-all cursor-pointer"
+              >
+                <Download size={13} className="text-cyan-400" />
+                <span>RESUME</span>
+              </motion.a>
+
+              <motion.a
+                whileHover={{ y: -1 }}
+                whileTap={{ y: 0 }}
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=shitolevishal29@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold text-slate-900 bg-cyan-400 hover:bg-cyan-300 shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all cursor-pointer"
+              >
+                <Mail size={13} />
+                <span>HIRE ME</span>
+              </motion.a>
+
+              <motion.a
+                whileHover={{ y: -1 }}
+                whileTap={{ y: 0 }}
+                href="https://github.com/vishal11u"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-slate-400 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-all cursor-pointer"
+                aria-label="GitHub Profile"
+              >
+                <Github size={15} />
+              </motion.a>
+            </div>
+          </nav>
+
+          {/* Mobile Actions & Menu Toggle */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <a
+              href="/Vishal-Shitole-Resume.pdf"
+              download
+              className="p-2 rounded-lg text-slate-200 bg-white/[0.04] border border-white/[0.08]"
+              aria-label="Download Resume"
+            >
+              <Download size={16} className="text-cyan-400" />
+            </a>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg text-slate-200 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] focus:outline-none"
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
-          <motion.nav
-            className="lg:hidden bg-linear-to-b from-purple-400 to-blue-400 px-4 py-6 border-t-4 border-yellow-500 shadow-xl"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="lg:hidden px-4 sm:px-6 pt-1"
           >
-            <div className="space-y-4">
+            <div className="cockpit-panel rounded-xl p-5 border border-white/[0.1] shadow-2xl space-y-4">
               <Navigation closeMenu={() => setIsOpen(false)} />
-              
-              <div className="pt-4 space-y-3">
-                <motion.a
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+
+              <div className="pt-3 border-t border-white/[0.08] flex gap-2">
+                <a
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=shitolevishal29@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-lg text-sm font-black uppercase text-white bg-green-500 shadow-md border-b-4 border-green-700"
+                  className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg font-mono text-xs font-semibold text-slate-900 bg-cyan-400 shadow-md"
                 >
-                  <Mail size={18} />
-                  Hire Me
-                </motion.a>
-                
-                <motion.a
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  href="/Vishal-Shitole-Resume.pdf"
-                  download
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-lg text-sm font-black uppercase text-white bg-orange-500 shadow-md border-b-4 border-orange-700"
+                  <Mail size={14} />
+                  HIRE ME
+                </a>
+                <a
+                  href="https://github.com/vishal11u"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-lg text-slate-200 bg-white/[0.06] border border-white/[0.1] flex items-center justify-center"
                 >
-                  <Download size={18} />
-                  Download Resume
-                </motion.a>
+                  <Github size={18} />
+                </a>
               </div>
             </div>
-          </motion.nav>
+          </motion.div>
         )}
       </AnimatePresence>
-
-      {/* LEGO studs decoration at bottom of navbar */}
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
-        <div className="w-3 h-3 bg-red-500 rounded-full shadow" />
-        <div className="w-3 h-3 bg-blue-500 rounded-full shadow" />
-        <div className="w-3 h-3 bg-yellow-400 rounded-full shadow" />
-        <div className="w-3 h-3 bg-green-500 rounded-full shadow" />
-      </div>
     </header>
   );
 };

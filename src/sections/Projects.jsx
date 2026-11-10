@@ -1,130 +1,174 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, ChevronRight } from "lucide-react";
+import {
+  ExternalLink,
+  ChevronRight,
+  Cpu,
+  X,
+  Eye,
+  GitBranch,
+} from "lucide-react";
 import { myProjects } from "../constants";
 
-const ProjectDetails = ({
-  title,
-  description,
-  subDescription,
-  image,
-  tags,
-  href,
-  closeModal,
-}) => {
+// Architectural blueprints for each flagship system
+const systemBlueprints = {
+  1: {
+    // FormPilot
+    flow: [
+      { node: "Client Embed / SDK", desc: "HTML / React widget popup overlay" },
+      { node: "Edge Validation", desc: "Next.js API & JWT refresh verification" },
+      { node: "Redis Layer", desc: "Token-bucket rate limiting & spam cache" },
+      { node: "Primary Storage", desc: "PostgreSQL submissions & analytics" },
+      { node: "Event Dispatch", desc: "SendGrid notifications & webhooks" },
+    ],
+  },
+  2: {
+    // TradeX
+    flow: [
+      { node: "Next.js 15 / React 19", desc: "Installable PWA client interface" },
+      { node: "Zustand State Hub", desc: "800ms real-time simulated order stream" },
+      { node: "Greeks Engine", desc: "Delta, Theta, Gamma, Vega calculations" },
+      { node: "Canvas Engine", desc: "TradingView Lightweight Charts" },
+      { node: "Storage & Sync", desc: "Supabase order book & offline storage" },
+    ],
+  },
+  3: {
+    // RailGaadi
+    flow: [
+      { node: "Route Map Canvas", desc: "MapLibre GL GPU-accelerated vectors" },
+      { node: "TanStack Query", desc: "30-second polling & state sync" },
+      { node: "Overlays Mesh", desc: "Weather, elevation & terrain feeds" },
+      { node: "Resilient Fallback", desc: "Degrades gracefully on API failure" },
+    ],
+  },
+  4: {
+    // Frontix
+    flow: [
+      { node: "TypeScript Source", desc: "25+ tree-shakable modern utilities" },
+      { node: "Vitest Suite", desc: "100% test coverage automated via CI" },
+      { node: "tsup Bundler", desc: "Dual ESM + CJS output (~2.5KB gzipped)" },
+      { node: "npm Registry", desc: "Published semantic versioning package" },
+    ],
+  },
+  5: {
+    // Trusty Voice
+    flow: [
+      { node: "Client Widget", desc: "Embeddable script with dark/light themes" },
+      { node: "Clerk Auth", desc: "Secure passwordless authentication" },
+      { node: "AI Sentiment", desc: "Automated real-time customer insights" },
+      { node: "Supabase DB", desc: "Real-time subscriptions & analytics" },
+    ],
+  },
+  6: {
+    // EnvShare
+    flow: [
+      { node: "Client Browser", desc: "AES-GCM client-side encryption key" },
+      { node: "Upstash Redis", desc: "Ephemeral encrypted secret payloads" },
+      { node: "Auto-Expiration", desc: "Burn-after-reading or time limits" },
+    ],
+  },
+};
+
+const ProjectModal = ({ project, closeModal }) => {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") closeModal();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    const orig = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = orig;
+    };
+  }, [closeModal]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-999 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto"
       onClick={closeModal}
     >
       <motion.div
-        className="relative w-full max-w-4xl max-h-[80vh] mt-24 z-50 overflow-y-auto rounded-2xl bg-gradient-to-br from-blue-400 to-purple-500 shadow-2xl"
-        initial={{ scale: 0.8, y: 50 }}
+        initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
-        exit={{ scale: 0.8, y: 50 }}
+        exit={{ scale: 0.9, y: 20 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
         onClick={(e) => e.stopPropagation()}
+        className="cockpit-panel rounded-2xl max-w-3xl w-full max-h-[88vh] overflow-y-auto border border-white/[0.15] shadow-2xl p-6 sm:p-8 space-y-6"
       >
-        {/* LEGO studs decoration on modal */}
-        <div className="absolute top-4 left-4 flex gap-2 z-10">
-          <div className="w-4 h-4 bg-white bg-opacity-30 rounded-full" />
-          <div className="w-4 h-4 bg-white bg-opacity-30 rounded-full" />
-          <div className="w-4 h-4 bg-white bg-opacity-30 rounded-full" />
-        </div>
-
-        {/* Close Button - LEGO Style */}
-        <motion.button
-          whileHover={{ scale: 1.1, rotate: 90 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={closeModal}
-          className="absolute top-4 right-4 z-10 p-3 bg-red-500 rounded-lg shadow-lg border-b-4 border-red-700 hover:border-red-800 transition-all"
-        >
-          <X size={20} className="text-white" />
-        </motion.button>
-
-        {/* Project Image with LEGO brick frame */}
-        <div className="relative border-8 border-yellow-400 rounded-t-2xl overflow-hidden">
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-64 md:h-96 object-fill"
-          />
-          {/* Image overlay pattern */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-        </div>
-
-        {/* Content */}
-        <div className="p-8 bg-white rounded-b-2xl space-y-6">
+        <div className="flex items-start justify-between">
           <div>
-            <h2
-              className="text-2xl font-black text-gray-900 uppercase mb-3"
-              style={{ fontFamily: "Arial Black, sans-serif" }}
-            >
-              {title}
-            </h2>
-            <p className="text-lg text-gray-700 leading-relaxed font-semibold">
-              {description}
-            </p>
+            <span className="font-mono text-xs text-cyan-400">
+              SYSTEM ARCHITECTURE SPECIFICATION
+            </span>
+            <h3 className="text-2xl font-bold text-white mt-1">
+              {project.title}
+            </h3>
+          </div>
+          <button
+            onClick={closeModal}
+            className="p-2 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white transition-colors cursor-pointer"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* Modal Image */}
+        <div className="rounded-xl overflow-hidden border border-white/[0.1] bg-black/40">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-56 sm:h-72 object-cover"
+          />
+        </div>
+
+        {/* Narrative & Highlights */}
+        <div className="space-y-4">
+          <p className="text-sm text-slate-300 leading-relaxed font-medium">
+            {project.description}
+          </p>
+
+          <div className="space-y-2 pt-2">
+            <span className="font-mono text-xs text-slate-400 uppercase tracking-wider">
+              KEY ARCHITECTURAL PROVISIONS:
+            </span>
+            {project.subDescription.map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-2.5 p-3 rounded-lg bg-white/[0.03] border border-white/[0.05] text-xs text-slate-300 leading-relaxed"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tags & Action */}
+        <div className="pt-4 border-t border-white/[0.08] flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap gap-1.5">
+            {project.tags.map((tag) => (
+              <span
+                key={tag.id}
+                className="px-2.5 py-1 rounded font-mono text-[11px] text-slate-300 bg-white/[0.04] border border-white/[0.08]"
+              >
+                {tag.name}
+              </span>
+            ))}
           </div>
 
-          {/* Features - LEGO Brick Style */}
-          <div className="space-y-3">
-            {subDescription.map((item, idx) => {
-              const colors = [
-                "bg-red-400",
-                "bg-blue-400",
-                "bg-green-400",
-                "bg-yellow-400",
-                "bg-purple-400",
-              ];
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className={`${colors[idx % colors.length]} p-4 rounded-lg border-b-4 border-black border-opacity-20 shadow-md`}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0" />
-                    <p className="text-white font-bold leading-relaxed">
-                      {item}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Tags & Link */}
-          <div className="pt-6 border-t-4 border-gray-200 space-y-4">
-            <div className="flex flex-wrap gap-3">
-              {tags.map((tag) => (
-                <motion.span
-                  key={tag.id}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="px-4 py-2 rounded-lg text-sm font-black uppercase bg-gray-900 text-white shadow-md border-b-4 border-gray-700"
-                >
-                  {tag.name}
-                </motion.span>
-              ))}
-            </div>
-
-            <motion.a
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-green-500 text-white rounded-lg font-black uppercase shadow-lg border-b-4 border-green-700 hover:bg-green-600 transition-all"
-            >
-              <span>View Project</span>
-              <ExternalLink size={20} />
-            </motion.a>
-          </div>
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-mono text-xs font-bold text-slate-950 bg-cyan-400 hover:bg-cyan-300 transition-all cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.3)]"
+          >
+            <span>VISIT LIVE SYSTEM</span>
+            <ExternalLink size={14} />
+          </a>
         </div>
       </motion.div>
     </motion.div>
@@ -132,80 +176,143 @@ const ProjectDetails = ({
 };
 
 const ProjectCard = ({ project }) => {
+  const [viewMode, setViewMode] = useState("preview"); // "preview" | "blueprint"
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const blueprint = systemBlueprints[project.id];
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="bg-white rounded-xl overflow-hidden shadow-xl border-4 border-yellow-400 hover:shadow-2xl transition-shadow duration-300"
-      >
-        {/* LEGO studs on card */}
-        <div className="absolute -top-3 left-6 flex gap-2 z-10">
-          <div className="w-6 h-6 bg-yellow-400 rounded-full shadow-lg" />
-          <div className="w-6 h-6 bg-yellow-400 rounded-full shadow-lg" />
-        </div>
-
-        {/* Project Image */}
-        <div className="relative h-62 overflow-hidden border-b-4 border-blue-500">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-fill transition-transform duration-300 hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-        </div>
-
-        {/* Project Info */}
-        <div className="p-6 space-y-4">
-          <h3
-            className="text-xl font-black text-gray-900 uppercase"
-            style={{ fontFamily: "Arial Black, sans-serif" }}
-          >
-            {project.title}
-          </h3>
-
-          <p className="text-gray-700 font-semibold line-clamp-2">
-            {project.description}
-          </p>
-
-          {/* Tech Stack Tags */}
-          <div className="flex flex-wrap gap-2 pt-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag.id}
-                className="px-3 py-1 rounded-lg text-xs font-black uppercase bg-blue-500 text-white shadow-md border-b-4 border-blue-700"
-              >
-                {tag.name}
-              </span>
-            ))}
+      <div className="cockpit-panel cockpit-panel-hover rounded-2xl overflow-hidden flex flex-col justify-between group">
+        {/* Card Header & Tactile Mode Switch */}
+        <div className="p-5 pb-3 border-b border-white/[0.06] flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-cyan-400" />
+            <span className="font-mono text-xs text-slate-400">
+              SYS-0{project.id} // PRODUCTION
+            </span>
           </div>
 
-          {/* View Project Button */}
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsModalOpen(true)}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg font-black uppercase shadow-lg border-b-4 border-red-700 hover:from-red-600 hover:to-pink-600 transition-all mt-4"
-          >
-            View Project
-            <ChevronRight size={20} />
-          </motion.button>
+          {/* Mode Switch Toggle Button */}
+          {blueprint && (
+            <div className="flex items-center gap-1 bg-black/40 p-1 rounded-lg border border-white/[0.08]">
+              <button
+                onClick={() => setViewMode("preview")}
+                className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono transition-all cursor-pointer ${
+                  viewMode === "preview"
+                    ? "bg-cyan-400 text-slate-950 font-bold"
+                    : "text-slate-400 hover:text-white"
+                }`}
+                title="Visual Preview"
+              >
+                <Eye size={11} />
+                <span>UI</span>
+              </button>
+              <button
+                onClick={() => setViewMode("blueprint")}
+                className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono transition-all cursor-pointer ${
+                  viewMode === "blueprint"
+                    ? "bg-amber-400 text-slate-950 font-bold"
+                    : "text-slate-400 hover:text-white"
+                }`}
+                title="System Architecture Blueprint"
+              >
+                <GitBranch size={11} />
+                <span>ARCH</span>
+              </button>
+            </div>
+          )}
         </div>
-      </motion.div>
 
+        {/* Dynamic Display Area */}
+        {viewMode === "preview" ? (
+          /* Visual Preview Mode */
+          <div className="relative h-52 sm:h-56 overflow-hidden bg-black/30">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d121d] via-transparent to-transparent opacity-80" />
+          </div>
+        ) : (
+          /* System Blueprint Mode */
+          <div className="h-52 sm:h-56 p-4 bg-[#070a10] flex flex-col justify-center space-y-2 font-mono overflow-y-auto">
+            <div className="text-[10px] text-amber-400 font-bold tracking-wider mb-1 flex items-center gap-1">
+              <Cpu size={12} />
+              <span>LIVE DATA ARCHITECTURE:</span>
+            </div>
+            {blueprint.flow.map((step, idx) => (
+              <div key={idx} className="flex items-center gap-2 text-[11px]">
+                <div className="w-4 h-4 rounded bg-amber-400/10 border border-amber-400/30 text-amber-400 flex items-center justify-center text-[10px] font-bold shrink-0">
+                  {idx + 1}
+                </div>
+                <div className="truncate">
+                  <span className="text-white font-semibold">{step.node}: </span>
+                  <span className="text-slate-400">{step.desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Card Content & Meta */}
+        <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+          <div className="space-y-2">
+            <h3 className="text-lg font-bold text-white tracking-tight">
+              {project.title}
+            </h3>
+            <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
+              {project.description}
+            </p>
+          </div>
+
+          <div className="space-y-4 pt-2">
+            {/* Tech Tags */}
+            <div className="flex flex-wrap gap-1.5">
+              {project.tags.slice(0, 4).map((tag) => (
+                <span
+                  key={tag.id}
+                  className="px-2 py-0.5 rounded font-mono text-[10px] text-slate-300 bg-white/[0.04] border border-white/[0.06]"
+                >
+                  {tag.name}
+                </span>
+              ))}
+              {project.tags.length > 4 && (
+                <span className="px-1.5 py-0.5 rounded font-mono text-[10px] text-slate-400 bg-white/[0.02]">
+                  +{project.tags.length - 4}
+                </span>
+              )}
+            </div>
+
+            {/* Action Bar */}
+            <div className="flex items-center gap-2 pt-2 border-t border-white/[0.06]">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg font-mono text-xs font-semibold text-slate-200 bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] transition-colors cursor-pointer"
+              >
+                <span>SPEC DETAILS</span>
+                <ChevronRight size={14} />
+              </button>
+
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-slate-300 hover:text-cyan-400 bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] transition-colors cursor-pointer"
+                title="Visit Live"
+              >
+                <ExternalLink size={15} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Deep-Dive Modal */}
       <AnimatePresence>
         {isModalOpen && (
-          <ProjectDetails
-            title={project.title}
-            description={project.description}
-            subDescription={project.subDescription}
-            image={project.image}
-            tags={project.tags}
-            href={project.href}
+          <ProjectModal
+            project={project}
             closeModal={() => setIsModalOpen(false)}
           />
         )}
@@ -216,67 +323,38 @@ const ProjectCard = ({ project }) => {
 
 const Projects = () => {
   return (
-    <section
-      className="relative py-20 px-6 bg-gradient-to-b from-blue-200 via-purple-200 to-pink-200 overflow-hidden"
-      id="projects"
-    >
-      {/* LEGO Baseplate Background */}
-      <div className="absolute inset-0 opacity-5">
-        {Array.from({ length: 15 }).map((_, i) => (
-          <React.Fragment key={i}>
-            <div
-              className="absolute w-full h-1 bg-gray-800"
-              style={{ top: `${i * 7}%` }}
-            />
-            <div
-              className="absolute h-full w-1 bg-gray-800"
-              style={{ left: `${i * 7}%` }}
-            />
-          </React.Fragment>
-        ))}
-      </div>
-
-      {/* Floating LEGO studs */}
-      <div className="absolute top-20 right-10 w-8 h-8 bg-red-500 rounded-full opacity-40 animate-pulse" />
-      <div className="absolute bottom-40 left-10 w-6 h-6 bg-blue-500 rounded-full opacity-40 animate-pulse" />
-      <div className="absolute top-40 left-1/4 w-5 h-5 bg-yellow-400 rounded-full opacity-30 animate-pulse" />
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2
-            className="text-5xl md:text-7xl font-black text-gray-900 uppercase text-center mb-4"
-            style={{ fontFamily: "Bungee, cursive" }}
-          >
-            My Selected Projects
-          </h2>
-          <div className="relative h-3">
-            <div className="absolute inset-x-0 h-2 bg-gradient-to-r from-red-500 via-yellow-400 to-blue-500 rounded-full" />
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 flex gap-3">
-              <div className="w-4 h-4 bg-red-500 rounded-full" />
-              <div className="w-4 h-4 bg-yellow-400 rounded-full" />
-              <div className="w-4 h-4 bg-blue-500 rounded-full" />
+    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-grid-pattern">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 mb-2 tracking-widest uppercase">
+              <span>// 02. FLAGSHIP SYSTEMS</span>
             </div>
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+              PRODUCTION SOFTWARE &amp; ARCHITECTURE
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-xl">
+              Engineered for throughput, data integrity, and responsiveness.
+              Toggle the <span className="text-amber-400 font-mono">[ARCH]</span>{" "}
+              button on any card to inspect the real-time data flow.
+            </p>
           </div>
-        </motion.div>
 
-        {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {myProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <ProjectCard project={project} />
-            </motion.div>
+          <div className="hidden sm:flex items-center gap-3 font-mono text-xs text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-cyan-400" /> UI PREVIEW
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-amber-400" /> SYSTEM BLUEPRINT
+            </span>
+          </div>
+        </div>
+
+        {/* 6 Grid Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {myProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </div>

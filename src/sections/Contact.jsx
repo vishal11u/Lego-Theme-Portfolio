@@ -7,72 +7,11 @@ import {
   MessageSquare,
   Check,
   AlertCircle,
+  Copy,
+  Terminal,
+  MapPin,
+  Phone,
 } from "lucide-react";
-
-// Alert Component - LEGO Style
-const Alert = ({ type, text }) => {
-  const isSuccess = type === "success";
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -50, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -50, scale: 0.9 }}
-      className="fixed top-24 left-1/2 -translate-x-1/2 z-50"
-    >
-      <div
-        className={`flex items-center gap-3 px-6 py-4 ${isSuccess ? "bg-green-500" : "bg-red-500"} rounded-lg shadow-2xl border-b-4 ${isSuccess ? "border-green-700" : "border-red-700"}`}
-      >
-        {isSuccess ? (
-          <Check size={24} className="text-white" />
-        ) : (
-          <AlertCircle size={24} className="text-white" />
-        )}
-        <p className="text-white font-black uppercase">{text}</p>
-      </div>
-    </motion.div>
-  );
-};
-
-// Floating LEGO Particles
-const FloatingBricks = () => {
-  const bricks = Array.from({ length: 15 }, (_, i) => ({
-    id: i,
-    color: ["bg-red-500", "bg-blue-500", "bg-yellow-400", "bg-green-500"][
-      i % 4
-    ],
-    size: Math.random() * 20 + 10,
-    delay: Math.random() * 2,
-    duration: Math.random() * 10 + 10,
-    x: Math.random() * 100,
-  }));
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {bricks.map((brick) => (
-        <motion.div
-          key={brick.id}
-          className={`absolute ${brick.color} rounded opacity-20`}
-          style={{
-            width: brick.size,
-            height: brick.size * 0.6,
-            left: `${brick.x}%`,
-          }}
-          animate={{
-            y: ["-10%", "110%"],
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: brick.duration,
-            delay: brick.delay,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
-    </div>
-  );
-};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -81,271 +20,279 @@ const Contact = () => {
     message: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertType, setAlertType] = useState("success");
-  const [alertMessage, setAlertMessage] = useState("");
+  const [status, setStatus] = useState(null); // { type: "success" | "error", message: string }
+  const [copied, setCopied] = useState(false);
+
+  const email = "shitolevishal29@gmail.com";
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const showAlertMessage = (type, message) => {
-    setAlertType(type);
-    setAlertMessage(message);
-    setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 5000);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus({
+        type: "error",
+        message: "Please fill out all required transmission parameters.",
+      });
+      return;
+    }
+
     setIsLoading(true);
+    setStatus(null);
 
     try {
       const response = await fetch("https://formspree.io/f/xjkovvdy", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-
-      const result = await response.json();
 
       if (response.ok) {
         setFormData({ name: "", email: "", message: "" });
-        showAlertMessage("success", "Message Sent Successfully!");
+        setStatus({
+          type: "success",
+          message: "Transmission received successfully! I will respond within 24 hours.",
+        });
       } else {
-        throw new Error(result?.error || "Something went wrong!");
+        throw new Error("Failed to transmit message.");
       }
-    } catch (error) {
-      console.error(error);
-      showAlertMessage("danger", "Oops! Something Went Wrong!");
+    } catch {
+      setStatus({
+        type: "error",
+        message: "Transmission failed. Please reach me directly at shitolevishal29@gmail.com.",
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <section
-      className="relative min-h-screen flex items-center justify-center py-20 px-6 bg-gradient-to-b from-pink-200 via-purple-200 to-blue-200 overflow-hidden"
-      id="contact"
-    >
-      {/* LEGO Baseplate Background */}
-      <div className="absolute inset-0 opacity-5">
-        {Array.from({ length: 15 }).map((_, i) => (
-          <div key={`h-${i}`}>
-            <div
-              className="absolute w-full h-1 bg-gray-800"
-              style={{ top: `${i * 7}%` }}
-            />
-            <div
-              className="absolute h-full w-1 bg-gray-800"
-              style={{ left: `${i * 7}%` }}
-            />
+    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-grid-pattern">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="mb-14">
+          <div className="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 mb-2 tracking-widest uppercase">
+            <span>// 05. INITIALIZE CONNECTION</span>
           </div>
-        ))}
-      </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+            START A CONVERSATION
+          </h2>
+          <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+            Whether you are building high-throughput SaaS, architecting real-time
+            trading engines, or looking for a senior developer who owns outcomes
+            end-to-end — my terminal is open.
+          </p>
+        </div>
 
-      {/* Floating LEGO Bricks */}
-      <FloatingBricks />
-
-      {/* Alert */}
-      <AnimatePresence>
-        {showAlert && <Alert type={alertType} text={alertMessage} />}
-      </AnimatePresence>
-
-      <div className="max-w-6xl w-full grid md:grid-cols-2 gap-8 relative z-10">
-        {/* Left Side - Info Card */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col justify-center space-y-8"
-        >
-          <div>
-            <motion.h2
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-5xl md:text-7xl font-black text-gray-900 uppercase mb-6"
-              style={{ fontFamily: "Bungee, cursive" }}
-            >
-              Let's Build
-              <br />
-              Something
-              <br />
-              <span className="bg-gradient-to-r from-red-500 via-yellow-400 to-blue-500 bg-clip-text text-transparent">
-                Together!
-              </span>
-            </motion.h2>
-
-            <p className="text-xl text-gray-700 font-bold leading-relaxed">
-              Whether you're looking to build a new website, improve your
-              existing platform, or bring a unique project to life, I'm here to
-              help.
-            </p>
-          </div>
-
-          {/* Decorative LEGO Bricks */}
-          <div className="hidden md:flex gap-4">
-            <motion.div
-              whileHover={{ y: -10, rotate: 5 }}
-              className="w-32 h-20 bg-red-500 rounded-lg shadow-xl border-b-4 border-red-700 relative flex flex-col items-center justify-center"
-            >
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex gap-2">
-                <div className="w-4 h-4 bg-red-500 rounded-full border-2 border-red-700" />
-                <div className="w-4 h-4 bg-red-500 rounded-full border-2 border-red-700" />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Left Column: Direct Telemetry & Channels (5 cols) */}
+          <div className="lg:col-span-5 space-y-5">
+            {/* Status Card */}
+            <div className="cockpit-panel rounded-2xl p-6 space-y-4">
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                </span>
+                <span className="font-mono text-xs text-emerald-400 font-bold tracking-wide">
+                  AVAILABILITY: OPEN FOR OPPORTUNITIES
+                </span>
               </div>
-              <Mail size={24} className="text-white mb-1" />
-              <p className="text-white font-black text-xs uppercase">Email</p>
-            </motion.div>
-            <motion.div
-              whileHover={{ y: -10, rotate: -5 }}
-              className="w-32 h-20 bg-blue-500 rounded-lg shadow-xl border-b-4 border-blue-700 relative flex flex-col items-center justify-center"
-            >
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex gap-2">
-                <div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-blue-700" />
-                <div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-blue-700" />
-              </div>
-              <MessageSquare size={24} className="text-white mb-1" />
-              <p className="text-white font-black text-xs uppercase">Chat</p>
-            </motion.div>
-            <motion.div
-              whileHover={{ y: -10, rotate: 5 }}
-              className="w-32 h-20 bg-yellow-400 rounded-lg shadow-xl border-b-4 border-yellow-600 relative flex flex-col items-center justify-center"
-            >
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex gap-2">
-                <div className="w-4 h-4 bg-yellow-400 rounded-full border-2 border-yellow-600" />
-                <div className="w-4 h-4 bg-yellow-400 rounded-full border-2 border-yellow-600" />
-              </div>
-              <Send size={24} className="text-white mb-1" />
-              <p className="text-white font-black text-xs uppercase">Send</p>
-            </motion.div>
-          </div>
-        </motion.div>
 
-        {/* Right Side - Form Card */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="relative"
-        >
-          {/* LEGO-style container */}
-          <div className="bg-white rounded-2xl p-8 shadow-2xl border-8 border-yellow-400 relative">
-            {/* LEGO studs on top of div */}
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex gap-3">
-              <div className="w-6 h-6 bg-yellow-400 rounded-full shadow-lg" />
-              <div className="w-6 h-6 bg-yellow-400 rounded-full shadow-lg" />
-              <div className="w-6 h-6 bg-yellow-400 rounded-full shadow-lg" />
+              <p className="text-sm text-slate-300 leading-relaxed font-normal">
+                Currently open for full-time frontend/full-stack roles,
+                architectural consultations, and high-impact contractor
+                engagements worldwide.
+              </p>
             </div>
 
-            <div className="space-y-6">
-              {/* Name Input */}
-              <div>
-                <label className="flex items-center gap-2 text-sm font-black uppercase text-gray-700 mb-2">
-                  <User size={18} className="text-red-500" />
-                  Full Name
-                </label>
-                <motion.input
-                  whileFocus={{ scale: 1.02 }}
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your awesome name"
-                  className="w-full px-4 py-3 rounded-lg border-4 border-gray-300 focus:border-red-500 focus:outline-none font-bold text-gray-900 transition-all"
-                />
+            {/* Direct Channel Cards */}
+            <div className="cockpit-panel rounded-2xl p-6 space-y-4">
+              <div className="font-mono text-xs text-slate-400 tracking-wider">
+                DIRECT COMM CHANNELS:
               </div>
 
-              {/* Email Input */}
-              <div>
-                <label className="flex items-center gap-2 text-sm font-black uppercase text-gray-700 mb-2">
-                  <Mail size={18} className="text-blue-500" />
-                  Email
-                </label>
-                <motion.input
-                  whileFocus={{ scale: 1.02 }}
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="your@email.com"
-                  className="w-full px-4 py-3 rounded-lg border-4 border-gray-300 focus:border-blue-500 focus:outline-none font-bold text-gray-900 transition-all"
-                />
+              {/* Email Button */}
+              <div className="space-y-1.5">
+                <div className="text-[11px] font-mono text-slate-400">
+                  PRIMARY EMAIL
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=shitolevishal29@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 p-3 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] text-xs font-mono text-white hover:text-cyan-400 transition-colors truncate"
+                  >
+                    {email}
+                  </a>
+                  <button
+                    onClick={handleCopyEmail}
+                    className="p-3 rounded-lg bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer"
+                    title="Copy Email"
+                  >
+                    {copied ? (
+                      <Check size={16} className="text-emerald-400" />
+                    ) : (
+                      <Copy size={16} />
+                    )}
+                  </button>
+                </div>
               </div>
 
-              {/* Message Textarea */}
+              {/* Phone & Location */}
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <div className="p-3 rounded-lg bg-white/[0.03] border border-white/[0.06]">
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400 mb-1">
+                    <Phone size={12} className="text-cyan-400" />
+                    <span>PHONE / WA</span>
+                  </div>
+                  <div className="text-xs font-mono text-slate-200">
+                    +91 9075393810
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-lg bg-white/[0.03] border border-white/[0.06]">
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400 mb-1">
+                    <MapPin size={12} className="text-amber-400" />
+                    <span>BASE</span>
+                  </div>
+                  <div className="text-xs font-mono text-slate-200 truncate">
+                    Pune, IN (Remote)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Terminal Cockpit Form (7 cols) */}
+          <div className="lg:col-span-7 cockpit-panel rounded-2xl p-6 sm:p-8 relative">
+            <div className="flex items-center justify-between pb-5 mb-6 border-b border-white/[0.08]">
+              <div className="flex items-center gap-2">
+                <Terminal size={16} className="text-cyan-400" />
+                <span className="font-mono text-xs text-white font-bold tracking-wider">
+                  SEND SECURE DISPATCH
+                </span>
+              </div>
+              <span className="font-mono text-[10px] text-slate-500">
+                TLS // 256-BIT ENCRYPTED
+              </span>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="flex items-center gap-2 text-sm font-black uppercase text-gray-700 mb-2">
-                  <MessageSquare size={18} className="text-green-500" />
-                  Message
+                <label className="block font-mono text-xs text-slate-300 uppercase mb-2">
+                  // 01. YOUR IDENTITY / NAME
                 </label>
-                <motion.textarea
-                  whileFocus={{ scale: 1.02 }}
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={5}
-                  placeholder="Tell me about your awesome project..."
-                  className="w-full px-4 py-3 rounded-lg border-4 border-gray-300 focus:border-green-500 focus:outline-none font-bold text-gray-900 resize-none transition-all"
-                />
+                <div className="relative">
+                  <User
+                    size={16}
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+                  />
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="e.g. Alex Mercer"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-black/40 border border-white/[0.1] focus:border-cyan-400 focus:outline-none font-mono text-sm text-white placeholder-slate-600 transition-colors"
+                  />
+                </div>
               </div>
 
-              {/* Submit Button */}
-              <motion.button
-                whileHover={{ scale: 1.05, y: -4 }}
-                whileTap={{ scale: 0.95, y: 0 }}
-                type="button"
-                onClick={handleSubmit}
+              <div>
+                <label className="block font-mono text-xs text-slate-300 uppercase mb-2">
+                  // 02. RETURN COMM CHANNEL / EMAIL
+                </label>
+                <div className="relative">
+                  <Mail
+                    size={16}
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="alex@company.com"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-black/40 border border-white/[0.1] focus:border-cyan-400 focus:outline-none font-mono text-sm text-white placeholder-slate-600 transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-mono text-xs text-slate-300 uppercase mb-2">
+                  // 03. MISSION PARAMETERS / MESSAGE
+                </label>
+                <div className="relative">
+                  <MessageSquare
+                    size={16}
+                    className="absolute left-3.5 top-3.5 text-slate-500"
+                  />
+                  <textarea
+                    rows={4}
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell me about your product, high-level requirements, or timeline..."
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-black/40 border border-white/[0.1] focus:border-cyan-400 focus:outline-none font-mono text-sm text-white placeholder-slate-600 transition-colors resize-none"
+                  />
+                </div>
+              </div>
+
+              {/* Status Notice */}
+              <AnimatePresence>
+                {status && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    className={`flex items-center gap-2 p-3 rounded-lg font-mono text-xs ${
+                      status.type === "success"
+                        ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-400"
+                        : "bg-rose-500/10 border border-rose-500/30 text-rose-400"
+                    }`}
+                  >
+                    {status.type === "success" ? (
+                      <Check size={16} />
+                    ) : (
+                      <AlertCircle size={16} />
+                    )}
+                    <span>{status.message}</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Submit Action Button */}
+              <button
+                type="submit"
                 disabled={isLoading}
-                className={`w-full flex items-center justify-center gap-3 px-6 py-4 rounded-lg font-black uppercase text-white shadow-xl border-b-4 transition-all ${
-                  isLoading
-                    ? "bg-gray-400 border-gray-600 cursor-not-allowed"
-                    : "bg-gradient-to-r from-purple-500 to-pink-500 border-purple-700 hover:from-purple-600 hover:to-pink-600"
-                }`}
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-mono text-xs font-bold text-slate-950 bg-cyan-400 hover:bg-cyan-300 shadow-[0_0_20px_rgba(0,240,255,0.35)] disabled:opacity-50 transition-all cursor-pointer"
               >
                 {isLoading ? (
                   <>
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                      className="w-6 h-6 border-4 border-white border-t-transparent rounded-full"
-                    />
-                    Sending...
+                    <span className="w-4 h-4 rounded-full border-2 border-slate-950 border-t-transparent animate-spin" />
+                    <span>TRANSMITTING DISPATCH...</span>
                   </>
                 ) : (
                   <>
-                    <Send size={20} />
-                    Send Message
+                    <Send size={14} />
+                    <span>TRANSMIT DISPATCH [ENTER]</span>
                   </>
                 )}
-              </motion.button>
-            </div>
-
-            {/* Bottom decoration */}
-            <div className="absolute -bottom-3 right-8 flex gap-2">
-              <div className="w-4 h-4 bg-purple-500 rounded-full shadow" />
-              <div className="w-4 h-4 bg-pink-500 rounded-full shadow" />
-            </div>
+              </button>
+            </form>
           </div>
-        </motion.div>
+        </div>
       </div>
-
-      {/* Scattered LEGO studs */}
-      <div className="absolute bottom-10 left-10 w-8 h-8 bg-red-500 rounded-full opacity-40" />
-      <div className="absolute top-20 right-20 w-6 h-6 bg-blue-500 rounded-full opacity-40" />
-      <div className="absolute top-1/3 left-20 w-7 h-7 bg-yellow-400 rounded-full opacity-40" />
     </section>
   );
 };

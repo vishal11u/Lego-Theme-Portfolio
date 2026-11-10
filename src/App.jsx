@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Navbar from "./sections/Navbar";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
+import Hackathons from "./sections/Hackathons";
 import Experiences from "./sections/Experiences";
-import Testimonial from "./sections/Testimonial";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 
@@ -23,13 +23,13 @@ const App = () => {
   }, []);
 
   return (
-    <div className="contain scroll-smooth">
+    <div className="bg-[#080a0f] text-slate-100 min-h-screen selection:bg-cyan-400 selection:text-slate-950 scroll-smooth">
       <Navbar />
       <Hero />
       <About />
       <Projects />
+      <Hackathons />
       <Experiences />
-      {/* <Testimonial /> */}
       <Contact />
       <Footer />
     </div>

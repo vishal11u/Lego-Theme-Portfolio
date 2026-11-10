@@ -1,164 +1,87 @@
-import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
-
-// Mock social data - replace with your actual data
-const mySocials = [
-  { name: "GitHub", href: "https://github.com/vishal11u", icon: Github },
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/vishal1-shitole/", icon: Linkedin },
-  { name: "Email", href: "mailto:shitolevishal29@gmail.com", icon: Mail },
-];
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ArrowUp,
+  Terminal,
+  Instagram,
+} from "lucide-react";
+import { mySocials } from "../constants";
 
 const Footer = () => {
-  const brickColors = ['bg-red-500', 'bg-blue-500', 'bg-yellow-400', 'bg-green-500'];
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const getSocialIcon = (name) => {
+    switch (name.toLowerCase()) {
+      case "github":
+        return <Github size={16} />;
+      case "linkedin":
+        return <Linkedin size={16} />;
+      case "instagram":
+        return <Instagram size={16} />;
+      default:
+        return <Mail size={16} />;
+    }
+  };
 
   return (
-    <footer className="relative bg-linear-to-b from-blue-200 to-purple-300 py-12 px-6 overflow-hidden">
-      {/* LEGO Baseplate Background */}
-      <div className="absolute inset-0 opacity-5">
-        {Array.from({ length: 10 }).map((_, i) => (
-          <div key={`grid-${i}`}>
-            <div className="absolute w-full h-1 bg-gray-800" style={{ top: `${i * 10}%` }} />
-            <div className="absolute h-full w-1 bg-gray-800" style={{ left: `${i * 14}%` }} />
+    <footer className="w-full bg-[#05070a] border-t border-white/[0.08] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col space-y-8">
+        {/* Top Row: System Status & Quick Scroll */}
+        <div className="flex flex-col sm:flex-row items-center justify-between pb-8 border-b border-white/[0.06] gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+              <Terminal size={15} />
+            </div>
+            <div>
+              <div className="font-mono text-xs font-bold text-white tracking-wider flex items-center gap-2">
+                <span>VISHAL SHITOLE</span>
+                <span className="text-[10px] text-cyan-400 font-normal">
+                  // PROD_BUILD_v2.6
+                </span>
+              </div>
+              <div className="text-[11px] font-mono text-slate-500">
+                PUNE, INDIA // LATENCY &lt;800MS // UTC+5:30
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* LEGO Brick Divider */}
-        <div className="relative mb-8 h-4">
-          <div className="absolute inset-x-0 h-2 bg-linear-to-r from-red-500 via-yellow-400 to-blue-500 rounded-full" />
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 flex gap-3">
-            <motion.div 
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-5 h-5 bg-red-500 rounded-full shadow-lg"
-            />
-            <motion.div 
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 2, delay: 0.2, repeat: Infinity }}
-              className="w-5 h-5 bg-yellow-400 rounded-full shadow-lg"
-            />
-            <motion.div 
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 2, delay: 0.4, repeat: Infinity }}
-              className="w-5 h-5 bg-blue-500 rounded-full shadow-lg"
-            />
-          </div>
+          <button
+            onClick={scrollToTop}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg font-mono text-xs text-slate-400 hover:text-cyan-400 bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.08] transition-colors cursor-pointer"
+          >
+            <span>BACK TO TOP</span>
+            <ArrowUp size={13} />
+          </button>
         </div>
 
-        {/* Social Links - LEGO Bricks */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
-          {mySocials.map((social, index) => {
-            const Icon = social.icon;
-            const color = brickColors[index % brickColors.length];
-            
-            return (
-              <motion.a
+        {/* Bottom Row: Social Channels & Copyright */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-500">
+          <div>
+            © {new Date().getFullYear()} Vishal Shitole. Designed &amp; engineered
+            with Next-Gen React 19, Three.js &amp; Tailwind CSS.
+          </div>
+
+          {/* Social Channels */}
+          <div className="flex items-center gap-3">
+            {mySocials.map((social) => (
+              <a
                 key={social.name}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ y: -8, rotate: 5, scale: 1.1 }}
-                whileTap={{ y: 0, scale: 0.95 }}
-                className={`relative flex items-center justify-center w-16 h-16 ${color} rounded-lg shadow-xl border-b-4 border-black border-opacity-30 group transition-all`}
+                className="p-2 rounded-lg bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] text-slate-400 hover:text-cyan-400 transition-colors"
                 title={social.name}
+                aria-label={social.name}
               >
-                {/* LEGO studs on social bricks */}
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex gap-1">
-                  <div className={`w-2 h-2 ${color} rounded-full border border-black border-opacity-20`} />
-                  <div className={`w-2 h-2 ${color} rounded-full border border-black border-opacity-20`} />
-                </div>
-                
-                <Icon size={28} className="text-white group-hover:scale-110 transition-transform" />
-                
-                {/* Tooltip */}
-                <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-gray-900 text-white text-xs font-black rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                  {social.name}
-                </div>
-              </motion.a>
-            );
-          })}
-        </div>
-
-        {/* Copyright Text - LEGO Style */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="inline-block bg-white px-8 py-4 rounded-lg shadow-lg border-b-4 border-gray-300 relative">
-            {/* Small LEGO studs */}
-            <div className="absolute -top-2 left-4 flex gap-2">
-              <div className="w-3 h-3 bg-white rounded-full border-2 border-gray-300" />
-              <div className="w-3 h-3 bg-white rounded-full border-2 border-gray-300" />
-            </div>
-            <div className="absolute -top-2 right-4 flex gap-2">
-              <div className="w-3 h-3 bg-white rounded-full border-2 border-gray-300" />
-              <div className="w-3 h-3 bg-white rounded-full border-2 border-gray-300" />
-            </div>
-
-            <p className="text-gray-900 font-black text-sm uppercase flex items-center gap-2 flex-wrap justify-center">
-              <span>© 2026 Vishal.</span>
-              <span className="flex items-center gap-1">
-                Built with
-                <motion.span
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                >
-                  <Heart size={16} className="text-red-500 fill-red-500" />
-                </motion.span>
-                & LEGO Bricks
-              </span>
-            </p>
+                {getSocialIcon(social.name)}
+              </a>
+            ))}
           </div>
-        </motion.div>
-
-        {/* Bottom LEGO Bricks Decoration */}
-        <div className="flex justify-center gap-4 mt-8">
-          {[...Array(5)].map((_, i) => {
-            const colors = ['bg-red-500', 'bg-blue-500', 'bg-yellow-400', 'bg-green-500', 'bg-purple-500'];
-            return (
-              <motion.div
-                key={i}
-                initial={{ y: 0 }}
-                animate={{ y: [0, -10, 0] }}
-                transition={{ 
-                  duration: 2, 
-                  delay: i * 0.2, 
-                  repeat: Infinity,
-                  repeatType: "reverse" 
-                }}
-                className={`w-12 h-8 ${colors[i]} rounded-md shadow-lg border-b-4 border-black border-opacity-30 relative`}
-              >
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 flex gap-1">
-                  <div className={`w-2 h-2 ${colors[i]} rounded-full border border-black border-opacity-20`} />
-                  <div className={`w-2 h-2 ${colors[i]} rounded-full border border-black border-opacity-20`} />
-                </div>
-              </motion.div>
-            );
-          })}
         </div>
-
-        {/* Fun Message */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-6"
-        >
-          <p className="text-gray-700 font-bold text-xs">
-            🧱 Every great project starts with a single brick 🧱
-          </p>
-        </motion.div>
       </div>
-
-      {/* Scattered LEGO studs in corners */}
-      <div className="absolute bottom-4 left-4 w-6 h-6 bg-red-500 rounded-full opacity-30" />
-      <div className="absolute bottom-4 right-4 w-6 h-6 bg-blue-500 rounded-full opacity-30" />
-      <div className="absolute top-4 left-8 w-5 h-5 bg-yellow-400 rounded-full opacity-30" />
-      <div className="absolute top-4 right-8 w-5 h-5 bg-green-500 rounded-full opacity-30" />
     </footer>
   );
 };
