@@ -6,9 +6,8 @@ function Navigation({ closeMenu }) {
   const navItems = [
     { id: "about", label: "01 // ABOUT" },
     { id: "projects", label: "02 // SYSTEMS" },
-    { id: "hackathons", label: "03 // ARENA" },
-    { id: "work", label: "04 // EXPERIENCE" },
-    { id: "contact", label: "05 // CONTACT" },
+    { id: "work", label: "03 // EXPERIENCE" },
+    { id: "contact", label: "04 // CONTACT" },
   ];
 
   const handleClick = (id) => {
@@ -49,7 +48,7 @@ const Navbar = () => {
           minute: "2-digit",
           second: "2-digit",
           hour12: false,
-        })
+        }),
       );
     };
     updateTime();
@@ -60,7 +59,7 @@ const Navbar = () => {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       {/* Top Telemetry Strip */}
-      <div className="w-full bg-[#05070a]/90 border-b border-white/[0.06] backdrop-blur-md px-4 py-1 hidden sm:flex items-center justify-between text-[11px] font-mono text-slate-400">
+      <div className="w-full bg-[#05070a]/90 border-b border-white/[0.06] backdrop-blur-md px-4 py-2 hidden sm:flex items-center justify-between text-[11px] font-mono text-slate-400">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
             <span className="relative flex h-2 w-2">
@@ -74,15 +73,13 @@ const Navbar = () => {
           <span className="text-white/20">|</span>
           <span className="flex items-center gap-1 text-slate-300">
             <Radio size={12} className="text-cyan-400" />
-            PUNE, IN [{time || "18:00:00"} IST]
+            INDIA [{time || "18:00:00"} IST]
           </span>
           <span className="text-white/20">|</span>
         </div>
 
         <div className="flex items-center gap-3">
-          <span className="text-cyan-400/90 font-bold">
-            LATENCY: &lt;800ms
-          </span>
+          <span className="text-cyan-400/90 font-bold">LATENCY: &lt;800ms</span>
           <span className="text-white/20">|</span>
           <span className="text-slate-400">STATUS: OPEN FOR NEW ROLES</span>
         </div>
@@ -108,7 +105,7 @@ const Navbar = () => {
                 </span>
               </span>
               <span className="text-[10px] font-mono text-slate-400 -mt-0.5">
-                2.6+ YRS FULL-STACK DEV
+                2.6+ YRS SOFTWARE DEV
               </span>
             </div>
           </motion.a>

@@ -59,7 +59,8 @@ const Contact = () => {
         setFormData({ name: "", email: "", message: "" });
         setStatus({
           type: "success",
-          message: "Transmission received successfully! I will respond within 24 hours.",
+          message:
+            "Transmission received successfully! I will respond within 24 hours.",
         });
       } else {
         throw new Error("Failed to transmit message.");
@@ -67,7 +68,8 @@ const Contact = () => {
     } catch {
       setStatus({
         type: "error",
-        message: "Transmission failed. Please reach me directly at shitolevishal29@gmail.com.",
+        message:
+          "Transmission failed. Please reach me directly at shitolevishal29@gmail.com.",
       });
     } finally {
       setIsLoading(false);
@@ -75,20 +77,23 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-grid-pattern">
+    <section
+      id="contact"
+      className="py-24 px-4 sm:px-6 lg:px-8 relative bg-grid-pattern"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-14">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 mb-2 tracking-widest uppercase">
-            <span>// 05. INITIALIZE CONNECTION</span>
+            <span>// 04. INITIALIZE CONNECTION</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
             START A CONVERSATION
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-            Whether you are building high-throughput SaaS, architecting real-time
-            trading engines, or looking for a senior developer who owns outcomes
-            end-to-end — my terminal is open.
+            Whether you are building high-throughput SaaS, architecting
+            real-time trading engines, or looking for a senior developer who
+            owns outcomes end-to-end — my terminal is open.
           </p>
         </div>
 
@@ -109,8 +114,7 @@ const Contact = () => {
 
               <p className="text-sm text-slate-300 leading-relaxed font-normal">
                 Currently open for full-time frontend/full-stack roles,
-                architectural consultations, and high-impact contractor
-                engagements worldwide.
+                high-impact contractor engagements worldwide.
               </p>
             </div>
 
@@ -166,7 +170,7 @@ const Contact = () => {
                     <span>BASE</span>
                   </div>
                   <div className="text-xs font-mono text-slate-200 truncate">
-                    Pune, IN (Remote)
+                    INDIA (Remote)
                   </div>
                 </div>
               </div>

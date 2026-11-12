@@ -11,7 +11,7 @@ const Experiences = () => {
         {/* Section Header */}
         <div className="mb-14">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 mb-2 tracking-widest uppercase">
-            <span>// 04. PRODUCTION TRACK RECORD</span>
+            <span>// 03. PRODUCTION TRACK RECORD</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
             WORK EXPERIENCE &amp; SCALE

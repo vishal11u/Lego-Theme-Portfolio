@@ -43,7 +43,7 @@ const Footer = () => {
                 </span>
               </div>
               <div className="text-[11px] font-mono text-slate-500">
-                PUNE, INDIA // LATENCY &lt;800MS // UTC+5:30
+                INDIA // LATENCY &lt;800MS // UTC+5:30
               </div>
             </div>
           </div>
@@ -60,8 +60,8 @@ const Footer = () => {
         {/* Bottom Row: Social Channels & Copyright */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-500">
           <div>
-            © {new Date().getFullYear()} Vishal Shitole. Designed &amp; engineered
-            with Next-Gen React 19, Three.js &amp; Tailwind CSS.
+            © {new Date().getFullYear()} Vishal Shitole. Designed &amp;
+            engineered with Next-Gen
           </div>
 
           {/* Social Channels */}
