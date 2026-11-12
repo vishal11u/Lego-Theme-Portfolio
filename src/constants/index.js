@@ -478,7 +478,7 @@ export const mySocials = [
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/dev_v__12/reels/",
+    href: "https://www.instagram.com/vishal11u",
     icon: "/assets/socials/instagram.svg",
   },
 ];
