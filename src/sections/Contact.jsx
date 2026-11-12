@@ -92,7 +92,7 @@ const Contact = () => {
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
             Whether you are building high-throughput SaaS, architecting
-            real-time trading engines, or looking for a senior developer who
+            real-time trading engines, or looking for a developer who
             owns outcomes end-to-end — my terminal is open.
           </p>
         </div>

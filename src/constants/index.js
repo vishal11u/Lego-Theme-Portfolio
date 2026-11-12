@@ -1,5 +1,70 @@
 export const myProjects = [
   {
+    id: 7,
+    title: "MedViz – Medical AI Diagnostic & Visualization Suite",
+    description:
+      "AI-powered medical intelligence platform that transforms blood reports, radiology, ECGs, and health data into visual, multilingual, and easy-to-understand health insights using Google Gemini.",
+    subDescription: [
+      "Built a multimodal medical intelligence platform using React 19, TypeScript, Tailwind CSS, and Google Gemini models.",
+      "Integrated Gemini 3.1 Pro for medical document analysis, biomarker extraction, structured JSON generation, health-gap analysis, and personalized insights.",
+      "Implemented multimodal document ingestion supporting medical PDFs, images, handwritten notes, camera scanning, and manual health data entry.",
+      "Developed an interactive anatomical body map that visually connects abnormal biomarkers with relevant organs and body regions.",
+      "Created a Health Index dashboard with 0-100 scoring, biomarker status breakdowns, BMI calculation, and current-vs-target health comparisons.",
+      "Added AI-generated easy explanations that translate complex medical terminology into understandable patient-friendly narratives.",
+      "Implemented multilingual AI insights supporting English, Hindi, Marathi, Spanish, French, and additional languages.",
+      "Integrated Gemini 2.5 Flash TTS to convert AI-generated medical explanations into natural voice narration.",
+      "Built a personalized health context layer using age, gender, height, and weight to generate contextualized health targets and insights.",
+      "Added AI-generated action plans that help users prepare relevant questions for discussions with healthcare professionals.",
+      "Integrated Supabase for application data and designed privacy-focused ephemeral processing for sensitive medical documents.",
+      "Implemented browser-based document scanning using the MediaDevices API for mobile-friendly medical report capture.",
+    ],
+    href: "https://medwiz-alpha.vercel.app/",
+    logo: "",
+    image: "/assets/projects/project-9.png",
+    tags: [
+      {
+        id: 1,
+        name: "React",
+        path: "/assets/logos/react.svg",
+      },
+      {
+        id: 2,
+        name: "TypeScript",
+        path: "/assets/logos/typescript.svg",
+      },
+      {
+        id: 3,
+        name: "Google Gemini",
+        path: "/assets/logos/gemini.svg",
+      },
+      {
+        id: 4,
+        name: "AI / LLM",
+        path: "/assets/logos/ai.svg",
+      },
+      {
+        id: 5,
+        name: "Supabase",
+        path: "/assets/logos/supabase.svg",
+      },
+      {
+        id: 6,
+        name: "TailwindCSS",
+        path: "/assets/logos/tailwindcss.svg",
+      },
+      {
+        id: 7,
+        name: "TTS",
+        path: "/assets/logos/ai.svg",
+      },
+      {
+        id: 8,
+        name: "MediaDevices API",
+        path: "/assets/logos/react.svg",
+      },
+    ],
+  },
+  {
     id: 1,
     title: "FormPilot – Full-Stack Form Submission SaaS",
     description:
@@ -121,20 +186,24 @@ export const myProjects = [
   },
   {
     id: 3,
-    title: "RailGaadi – Live Train Tracking Platform",
+    title: "RailGaadi – Live Indian Train Tracking Platform",
     description:
-      "Live Indian train-tracking app with an interactive MapLibre route map, 30-second journey polling and weather, elevation and terrain overlays with graceful fallback.",
+      "Real-time Indian train tracking platform with interactive MapLibre maps, 30-second live updates, station-wise ETA and delays, weather, terrain, and elevation analytics with resilient API fallbacks.",
     subDescription: [
-      "Live train-tracking platform built with Next.js, TypeScript, MapLibre GL, and TanStack Query.",
-      "Interactive MapLibre GL route map rendering real-time train paths, station stops, and live positions.",
-      "30-second live journey polling delivering prompt updates on train speed, delays, and platform allocation.",
-      "Multi-provider overlays integrating weather, elevation, and terrain data (RailRadar, OpenWeather, OpenTopography).",
-      "Graceful degradation architecture: resilient fallback caching ensures uninterrupted service when APIs fail.",
-      "Zustand-powered state synchronization for instant station lookups and smooth responsive UI.",
+      "Built a mobile-friendly live train tracking platform using Next.js 14, React 18, TypeScript, and Tailwind CSS.",
+      "Integrated RailRadar APIs to provide train search, live journey status, route geometry, station progress, ETA, delays, and platform information.",
+      "Implemented interactive MapLibre GL maps with live train positions, station markers, route paths, and map-based journey visualization.",
+      "Used TanStack Query for automatic 30-second polling and efficient server-state synchronization of live journey data.",
+      "Integrated OpenWeather and OpenTopography APIs to display station weather conditions and elevation profiles along the train route.",
+      "Added Overpass API and OpenStreetMap data for terrain information and nearby route features.",
+      "Designed graceful fallback mechanisms with generated journey, weather, terrain, and elevation data when external APIs are unavailable.",
+      "Implemented Zustand persistence for favorite trains and recent searches using browser local storage.",
+      "Added dedicated train journey, favorites, and shareable public journey pages with responsive mobile-first UI.",
+      "Implemented in-memory API caching to reduce repeated external API requests and improve application responsiveness.",
     ],
-    href: "https://github.com/vishal11u",
+    href: "https://railgadi.vercel.app/",
     logo: "",
-    image: "/assets/projects/project-3.png",
+    image: "/assets/projects/project-8.png",
     tags: [
       {
         id: 1,
@@ -166,8 +235,19 @@ export const myProjects = [
         name: "TailwindCSS",
         path: "/assets/logos/tailwindcss.svg",
       },
+      {
+        id: 7,
+        name: "RailRadar API",
+        path: "/assets/logos/api.svg",
+      },
+      {
+        id: 8,
+        name: "OpenStreetMap",
+        path: "/assets/logos/openstreetmap.svg",
+      },
     ],
   },
+  ,
   {
     id: 4,
     title: "Frontix – Open Source npm Package",
@@ -216,83 +296,83 @@ export const myProjects = [
       },
     ],
   },
-  {
-    id: 5,
-    title: "Trusty Voice – Testimonial & Feedback System",
-    description:
-      "A modern SaaS platform for collecting and showcasing customer testimonials and feedback, featuring AI-powered insights, secure user authentication, and flexible embedding options.",
-    subDescription: [
-      "Developed using Next.js 14 with TypeScript for a fast, type-safe, and scalable frontend.",
-      "Integrated Clerk for secure, passwordless authentication and user management.",
-      "Built customizable testimonial widgets and embeddable scripts for easy integration into any website.",
-      "Enabled AI-powered feedback chatbot for automated, real-time sentiment collection.",
-      "Implemented analytics dashboard to monitor user engagement and testimonial performance.",
-      "Added Stripe integration for subscription-based billing and plan management.",
-      "Styled entirely with Tailwind CSS and shipped with full dark mode support.",
-      "Used Supabase as the backend database with real-time capabilities.",
-      "Deployed on Vercel with CI/CD and performance optimizations.",
-    ],
-    href: "https://trusty-voice.vercel.app/",
-    logo: "",
-    image: "/assets/projects/project-5.png",
-    tags: [
-      {
-        id: 1,
-        name: "Next.js",
-        path: "/assets/logos/nextjs.svg",
-      },
-      {
-        id: 2,
-        name: "TypeScript",
-        path: "/assets/logos/typescript.svg",
-      },
-      {
-        id: 3,
-        name: "Clerk",
-        path: "/assets/logos/clerk.svg",
-      },
-      {
-        id: 4,
-        name: "Supabase",
-        path: "/assets/logos/supabase.svg",
-      },
-      {
-        id: 5,
-        name: "Stripe",
-        path: "/assets/logos/stripe.svg",
-      },
-      {
-        id: 6,
-        name: "TailwindCSS",
-        path: "/assets/logos/tailwindcss.svg",
-      },
-      {
-        id: 7,
-        name: "AI",
-        path: "/assets/logos/openai.svg",
-      },
-      {
-        id: 8,
-        name: "Framer Motion",
-        path: "/assets/logos/framer-motion.svg",
-      },
-      {
-        id: 9,
-        name: "GSAP",
-        path: "/assets/logos/gsap.svg",
-      },
-      {
-        id: 10,
-        name: "shadcn/ui",
-        path: "/assets/logos/shadcn.svg",
-      },
-      {
-        id: 11,
-        name: "Recharts",
-        path: "/assets/logos/recharts.svg",
-      },
-    ],
-  },
+  // {
+  //   id: 5,
+  //   title: "Trusty Voice – Testimonial & Feedback System",
+  //   description:
+  //     "A modern SaaS platform for collecting and showcasing customer testimonials and feedback, featuring AI-powered insights, secure user authentication, and flexible embedding options.",
+  //   subDescription: [
+  //     "Developed using Next.js 14 with TypeScript for a fast, type-safe, and scalable frontend.",
+  //     "Integrated Clerk for secure, passwordless authentication and user management.",
+  //     "Built customizable testimonial widgets and embeddable scripts for easy integration into any website.",
+  //     "Enabled AI-powered feedback chatbot for automated, real-time sentiment collection.",
+  //     "Implemented analytics dashboard to monitor user engagement and testimonial performance.",
+  //     "Added Stripe integration for subscription-based billing and plan management.",
+  //     "Styled entirely with Tailwind CSS and shipped with full dark mode support.",
+  //     "Used Supabase as the backend database with real-time capabilities.",
+  //     "Deployed on Vercel with CI/CD and performance optimizations.",
+  //   ],
+  //   href: "https://trusty-voice.vercel.app/",
+  //   logo: "",
+  //   image: "/assets/projects/project-5.png",
+  //   tags: [
+  //     {
+  //       id: 1,
+  //       name: "Next.js",
+  //       path: "/assets/logos/nextjs.svg",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "TypeScript",
+  //       path: "/assets/logos/typescript.svg",
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "Clerk",
+  //       path: "/assets/logos/clerk.svg",
+  //     },
+  //     {
+  //       id: 4,
+  //       name: "Supabase",
+  //       path: "/assets/logos/supabase.svg",
+  //     },
+  //     {
+  //       id: 5,
+  //       name: "Stripe",
+  //       path: "/assets/logos/stripe.svg",
+  //     },
+  //     {
+  //       id: 6,
+  //       name: "TailwindCSS",
+  //       path: "/assets/logos/tailwindcss.svg",
+  //     },
+  //     {
+  //       id: 7,
+  //       name: "AI",
+  //       path: "/assets/logos/openai.svg",
+  //     },
+  //     {
+  //       id: 8,
+  //       name: "Framer Motion",
+  //       path: "/assets/logos/framer-motion.svg",
+  //     },
+  //     {
+  //       id: 9,
+  //       name: "GSAP",
+  //       path: "/assets/logos/gsap.svg",
+  //     },
+  //     {
+  //       id: 10,
+  //       name: "shadcn/ui",
+  //       path: "/assets/logos/shadcn.svg",
+  //     },
+  //     {
+  //       id: 11,
+  //       name: "Recharts",
+  //       path: "/assets/logos/recharts.svg",
+  //     },
+  //   ],
+  // },
   {
     id: 5,
     title: "EnvShare – Secure Environment Sharing Tool",
@@ -472,4 +552,3 @@ export const experiences = [
     ],
   },
 ];
-

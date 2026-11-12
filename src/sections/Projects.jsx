@@ -97,7 +97,7 @@ const ProjectModal = ({ project, closeModal }) => {
         exit={{ scale: 0.9, y: 20 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
         onClick={(e) => e.stopPropagation()}
-        className="cockpit-panel rounded-2xl max-w-3xl w-full max-h-[88vh] overflow-y-auto border border-white/[0.15] shadow-2xl p-6 sm:p-8 space-y-6"
+        className="cockpit-panel rounded-2xl max-w-3xl w-full max-h-[80vh] overflow-y-auto border border-white/[0.15] shadow-2xl p-6 sm:p-8 space-y-6"
       >
         <div className="flex items-start justify-between">
           <div>
@@ -332,7 +332,7 @@ const Projects = () => {
               <span>// 02. FLAGSHIP SYSTEMS</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
-              PRODUCTION SOFTWARE &amp; ARCHITECTURE
+              PRODUCTION SOFTWARES
             </h2>
             <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-xl">
               Engineered for throughput, data integrity, and responsiveness.
