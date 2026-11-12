@@ -140,10 +140,10 @@ const About = () => {
       : techStack.filter((t) => t.category === activeCategory);
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-grid-pattern">
+    <section id="about" className="space-section py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="mb-14">
+        <div className="mb-14 space-reveal">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 mb-2 tracking-widest uppercase">
             <span>// 01. ARCHITECTURAL PROFILE</span>
           </div>
@@ -159,7 +159,7 @@ const About = () => {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
           {/* Box 1: Core Background & Ownership (7 cols) */}
-          <div className="md:col-span-7 cockpit-panel rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="md:col-span-7 cockpit-panel cockpit-panel-hover space-reveal rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-slate-300">
                 <Cpu size={14} className="text-cyan-400" />
@@ -216,7 +216,7 @@ const About = () => {
           </div>
 
           {/* Box 2: Quantified Metrics Deck (5 cols) */}
-          <div className="md:col-span-5 cockpit-panel rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div className="md:col-span-5 cockpit-panel cockpit-panel-hover space-reveal rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
             <div className="flex items-center justify-between mb-4">
               <span className="font-mono text-xs text-slate-400 tracking-wider">
                 PRODUCTION TELEMETRY
@@ -281,13 +281,13 @@ const About = () => {
           </div>
 
           {/* Box 3: Geolocation & Remote Readiness (5 cols) */}
-          <div className="md:col-span-5 cockpit-panel rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between">
+          <div className="md:col-span-5 cockpit-panel cockpit-panel-hover space-reveal rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between">
             <div className="relative z-10 space-y-2">
               <div className="flex items-center gap-2 text-xs font-mono text-cyan-400">
                 <Globe size={14} />
                 <span>PRIMARY TIMEZONE &amp; COORDINATES</span>
               </div>
-              <h4 className="text-xl font-bold text-white">Pune, India</h4>
+              <h4 className="text-xl font-bold text-white">India</h4>
               <p className="text-xs text-slate-400 font-mono">
                 18.5204° N, 73.8567° E // IST (UTC +5:30)
               </p>
@@ -308,7 +308,7 @@ const About = () => {
           </div>
 
           {/* Box 4: Interactive Technology Matrix (7 cols) */}
-          <div className="md:col-span-7 cockpit-panel rounded-2xl p-6 sm:p-8 space-y-5">
+          <div className="md:col-span-7 cockpit-panel cockpit-panel-hover space-reveal rounded-2xl p-6 sm:p-8 space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <span className="font-mono text-xs text-cyan-400 tracking-wider">

@@ -182,7 +182,7 @@ const ProjectCard = ({ project }) => {
 
   return (
     <>
-      <div className="cockpit-panel cockpit-panel-hover rounded-2xl overflow-hidden flex flex-col justify-between group">
+      <div className="cockpit-panel cockpit-panel-hover space-reveal rounded-2xl overflow-hidden flex flex-col justify-between group">
         {/* Card Header & Tactile Mode Switch */}
         <div className="p-5 pb-3 border-b border-white/[0.06] flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -323,10 +323,10 @@ const ProjectCard = ({ project }) => {
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-grid-pattern">
+    <section id="projects" className="space-section py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+        <div className="space-reveal flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 mb-2 tracking-widest uppercase">
               <span>// 02. FLAGSHIP SYSTEMS</span>

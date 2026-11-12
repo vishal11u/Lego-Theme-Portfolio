@@ -79,11 +79,11 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-24 px-4 sm:px-6 lg:px-8 relative bg-grid-pattern"
+      className="space-section py-24 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="mb-14">
+        <div className="mb-14 space-reveal">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 mb-2 tracking-widest uppercase">
             <span>// 04. INITIALIZE CONNECTION</span>
           </div>
@@ -99,9 +99,9 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column: Direct Telemetry & Channels (5 cols) */}
-          <div className="lg:col-span-5 space-y-5">
+          <div className="lg:col-span-5 space-y-5 space-reveal">
             {/* Status Card */}
-            <div className="cockpit-panel rounded-2xl p-6 space-y-4">
+            <div className="cockpit-panel cockpit-panel-hover rounded-2xl p-6 space-y-4">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -119,7 +119,7 @@ const Contact = () => {
             </div>
 
             {/* Direct Channel Cards */}
-            <div className="cockpit-panel rounded-2xl p-6 space-y-4">
+            <div className="cockpit-panel cockpit-panel-hover rounded-2xl p-6 space-y-4">
               <div className="font-mono text-xs text-slate-400 tracking-wider">
                 DIRECT COMM CHANNELS:
               </div>
@@ -178,7 +178,7 @@ const Contact = () => {
           </div>
 
           {/* Right Column: Terminal Cockpit Form (7 cols) */}
-          <div className="lg:col-span-7 cockpit-panel rounded-2xl p-6 sm:p-8 relative">
+          <div className="lg:col-span-7 cockpit-panel cockpit-panel-hover space-reveal rounded-2xl p-6 sm:p-8 relative">
             <div className="flex items-center justify-between pb-5 mb-6 border-b border-white/[0.08]">
               <div className="flex items-center gap-2">
                 <Terminal size={16} className="text-cyan-400" />

@@ -6,10 +6,10 @@ import { experiences } from "../constants";
 
 const Experiences = () => {
   return (
-    <section id="work" className="py-24 px-4 sm:px-6 lg:px-8 relative bg-grid-pattern">
+    <section id="work" className="space-section py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="mb-14">
+        <div className="mb-14 space-reveal">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-cyan-400 mb-2 tracking-widest uppercase">
             <span>// 03. PRODUCTION TRACK RECORD</span>
           </div>
@@ -30,7 +30,7 @@ const Experiences = () => {
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className="cockpit-panel cockpit-panel-hover rounded-2xl p-6 sm:p-8 relative md:ml-16 overflow-hidden group"
+              className="cockpit-panel cockpit-panel-hover space-reveal rounded-2xl p-6 sm:p-8 relative md:ml-16 overflow-hidden group"
             >
               {/* Timeline Connector Dot on Desktop */}
               <div className="hidden md:flex absolute -left-16 top-8 w-8 h-8 rounded-full bg-[#080a0f] border-2 border-cyan-400 items-center justify-center -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(0,240,255,0.4)]">
