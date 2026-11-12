@@ -64,7 +64,6 @@ body {
     linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
   background-size: 220px 190px, 260px 230px, 320px 280px, auto, auto, 48px 48px, 48px 48px;
-  animation: space-drift 90s linear infinite;
 }
 
 .space-section::after {
@@ -78,7 +77,6 @@ body {
     0 0 70px rgba(34, 211, 238, 0.035),
     inset 0 0 70px rgba(34, 211, 238, 0.025);
   transform: rotate(-24deg) scaleY(0.42);
-  animation: orbit-drift 75s linear infinite;
 }
 
 .space-section > .max-w-7xl {
@@ -111,25 +109,6 @@ body {
   transition-delay: 220ms;
 }
 
-@keyframes space-drift {
-  to {
-    background-position:
-      220px 190px,
-      -260px 230px,
-      320px -280px,
-      0 0,
-      0 0,
-      48px 48px,
-      48px 48px;
-  }
-}
-
-@keyframes orbit-drift {
-  to {
-    rotate: 360deg;
-  }
-}
-
 .footer-signal {
   position: absolute;
   z-index: 1;
@@ -150,25 +129,25 @@ body {
 @keyframes footer-signal-sweep {
   0%,
   100% {
-    left: 0;
+    transform: translateX(0);
     opacity: 0.35;
   }
   50% {
-    left: 68%;
+    transform: translateX(212.5%);
     opacity: 1;
   }
 }
 
 /* Tactile Cockpit Panel Styling */
 .cockpit-panel {
-  background: rgba(13, 18, 29, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(13, 18, 29, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .cockpit-panel-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cockpit-panel-hover:hover {

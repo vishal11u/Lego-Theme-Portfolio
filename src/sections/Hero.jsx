@@ -1,4 +1,4 @@
-import { Suspense, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   Float,
@@ -247,19 +247,19 @@ const SystemCore = () => {
       {/* Three tilted orbital rings */}
       <group rotation={[Math.PI / 2.4, 0, 0]}>
         <mesh ref={ringA}>
-          <torusGeometry args={[3.1, 0.012, 8, 128]} />
+          <torusGeometry args={[3.1, 0.012, 8, 64]} />
           <meshBasicMaterial color="#22d3ee" transparent opacity={0.45} />
         </mesh>
       </group>
       <group rotation={[-Math.PI / 3, 0.4, 0]}>
         <mesh ref={ringB}>
-          <torusGeometry args={[3.9, 0.01, 8, 128]} />
+          <torusGeometry args={[3.9, 0.01, 8, 64]} />
           <meshBasicMaterial color="#38bdf8" transparent opacity={0.3} />
         </mesh>
       </group>
       <group rotation={[Math.PI / 1.8, -0.3, 0]}>
         <mesh ref={ringC}>
-          <torusGeometry args={[4.6, 0.008, 8, 128]} />
+          <torusGeometry args={[4.6, 0.008, 8, 64]} />
           <meshBasicMaterial color="#a78bfa" transparent opacity={0.22} />
         </mesh>
       </group>
@@ -278,7 +278,7 @@ const SystemCore = () => {
 const Dust = () => {
   const ref = useRef();
   const positions = useMemo(() => {
-    const arr = new Float32Array(300 * 3);
+    const arr = new Float32Array(160 * 3);
     for (let i = 0; i < arr.length; i++) arr[i] = (Math.random() - 0.5) * 16;
     return arr;
   }, []);
@@ -343,7 +343,7 @@ const StarField = () => {
       <Stars
         radius={50}
         depth={40}
-        count={2500}
+        count={1200}
         factor={3.5}
         saturation={0}
         fade
@@ -552,6 +552,37 @@ const Planet = ({
 /* ------------------------------------------------------------------ */
 const _up = new THREE.Vector3(0, 1, 0);
 
+const SceneFrameLoop = ({ active }) => {
+  const invalidate = useThree((state) => state.invalidate);
+
+  useEffect(() => {
+    let interval;
+    const stop = () => {
+      window.clearInterval(interval);
+      interval = undefined;
+    };
+    const start = () => {
+      stop();
+      if (!active || document.hidden) return;
+      invalidate();
+      interval = window.setInterval(invalidate, 1000 / 30);
+    };
+    const handleVisibilityChange = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+
+    start();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [active, invalidate]);
+
+  return null;
+};
+
 const Rocket = ({ center, rx, ry, depth, size = 0.45 }) => {
   const root = useRef();
   const body = useRef();
@@ -718,7 +749,7 @@ const Rocket = ({ center, rx, ry, depth, size = 0.45 }) => {
   );
 };
 
-const HeroScene = () => {
+const HeroScene = ({ active }) => {
   const { viewport, size } = useThree();
 
   // Scale the system so its outermost ring + labels always fit inside
@@ -740,6 +771,7 @@ const HeroScene = () => {
 
   return (
     <>
+      <SceneFrameLoop active={active} />
       <PerspectiveCamera makeDefault position={[0, 0, 9]} fov={50} />
       <ambientLight intensity={0.35} />
       <pointLight position={[8, 8, 8]} intensity={2} color="#22d3ee" />
@@ -752,7 +784,7 @@ const HeroScene = () => {
       <StarField />
       <Dust />
       <Sparkles
-        count={60}
+        count={32}
         scale={[20, 12, 10]}
         size={2}
         speed={0.3}
@@ -788,7 +820,7 @@ const HeroScene = () => {
       <Asteroid position={at(-0.32, 0.05, -4)} size={0.25} speed={0.25} />
 
       {/* Shooting meteors */}
-      {[0, 1.8, 3.5, 5, 6.5, 8].map((d, i) => (
+      {[0, 2.5, 5].map((d, i) => (
         <Meteor
           key={i}
           w={viewport.width}
@@ -814,8 +846,24 @@ const HeroScene = () => {
 /*  Hero                                                               */
 /* ------------------------------------------------------------------ */
 const Hero = () => {
+  const sectionRef = useRef(null);
+  const [sceneActive, setSceneActive] = useState(true);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setSceneActive(entry.isIntersecting),
+      { rootMargin: "100px 0px" },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative min-h-screen pt-28 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8 flex flex-col justify-center overflow-hidden bg-grid-pattern"
     >
@@ -824,9 +872,13 @@ const Hero = () => {
 
       {/* Canvas: interactive on desktop, passive on mobile so links stay tappable */}
       <div className="absolute inset-0 pointer-events-none lg:pointer-events-auto opacity-40 lg:opacity-100 z-0">
-        <Canvas dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
+        <Canvas
+          dpr={1}
+          frameloop="demand"
+          gl={{ antialias: true, alpha: true }}
+        >
           <Suspense fallback={null}>
-            <HeroScene />
+            <HeroScene active={sceneActive} />
           </Suspense>
         </Canvas>
       </div>

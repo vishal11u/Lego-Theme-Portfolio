@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useState, useRef, useEffect } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   Globe,
   Cpu,
@@ -29,14 +29,40 @@ import { BiLogoPostgresql, BiLogoFirebase } from "react-icons/bi";
 import { TbBrandReactNative } from "react-icons/tb";
 
 // 3D Telemetry Wireframe Globe
-const TelemetryGlobe = () => {
+const TelemetryGlobe = ({ active }) => {
   const globeRef = useRef();
+  const invalidate = useThree((state) => state.invalidate);
 
-  useFrame((state) => {
-    if (globeRef.current) {
-      globeRef.current.rotation.y = state.clock.getElapsedTime() * 0.15;
-      globeRef.current.rotation.x = 0.2;
-    }
+  useEffect(() => {
+    let interval;
+    const stop = () => {
+      window.clearInterval(interval);
+      interval = undefined;
+    };
+    const start = () => {
+      stop();
+      if (!active || document.hidden) return;
+      invalidate();
+      interval = window.setInterval(invalidate, 1000 / 30);
+    };
+    const handleVisibilityChange = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+
+    start();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [active, invalidate]);
+
+  useFrame((_, delta) => {
+    if (!active || document.hidden || !globeRef.current) return;
+    globeRef.current.rotation.y += delta * 0.15;
+    globeRef.current.rotation.x = 0.2;
+    invalidate();
   });
 
   return (
@@ -100,6 +126,23 @@ const TerminalEmailButton = () => {
 
 const About = () => {
   const [activeCategory, setActiveCategory] = useState("ALL");
+  const [globeVisible, setGlobeVisible] = useState(false);
+  const globeContainerRef = useRef(null);
+
+  useEffect(() => {
+    const container = globeContainerRef.current;
+    if (!container || !("IntersectionObserver" in window)) {
+      setGlobeVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setGlobeVisible(entry.isIntersecting),
+      { rootMargin: "100px" },
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   const techStack = [
     { name: "React", category: "FRONTEND", color: "text-[#61DAFB]", icon: <FaReact /> },
@@ -296,9 +339,12 @@ const About = () => {
               </div>
             </div>
 
-            <div className="absolute right-[-20px] bottom-[-20px] w-48 h-48 opacity-40 pointer-events-none">
-              <Canvas>
-                <TelemetryGlobe />
+            <div
+              ref={globeContainerRef}
+              className="absolute right-[-20px] bottom-[-20px] w-48 h-48 opacity-40 pointer-events-none"
+            >
+              <Canvas frameloop="demand" dpr={1}>
+                <TelemetryGlobe active={globeVisible} />
               </Canvas>
             </div>
 
