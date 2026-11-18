@@ -58,7 +58,7 @@ const NODES = [
     color: "#38bdf8",
   },
   {
-    label: "AWS",
+    label: "React",
     radius: 4.6,
     speed: 0.18,
     offset: 5.5,
@@ -901,7 +901,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-slate-300 leading-relaxed font-normal max-w-2xl"
+            className="text-base sm:text-xl text-slate-300 leading-relaxed font-normal max-w-2xl"
           >
             I build high-concurrency SaaS platforms, real-time data streaming
             dashboards, and offline-first mobile applications with React,

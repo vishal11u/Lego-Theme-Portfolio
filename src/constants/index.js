@@ -1,6 +1,6 @@
 export const myProjects = [
   {
-    id: 7,
+    id: 1,
     title: "MedViz – Medical AI Diagnostic & Visualization Suite",
     description:
       "AI-powered medical intelligence platform that transforms blood reports, radiology, ECGs, and health data into visual, multilingual, and easy-to-understand health insights using Google Gemini.",
@@ -65,7 +65,7 @@ export const myProjects = [
     ],
   },
   {
-    id: 1,
+    id: 2,
     title: "FormPilot – Full-Stack Form Submission SaaS",
     description:
       "Form-management SaaS handling 100+ daily submissions: JWT auth with refresh tokens, Redis caching & rate limiting, webhooks, spam detection, SendGrid email alerts, and a real-time analytics dashboard.",
@@ -125,7 +125,7 @@ export const myProjects = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "TradeX – Paper Trading Platform",
     description:
       "Paper-trading simulator for Indian stock and options markets with real-time option chains, Greeks (Delta, Theta, Gamma, Vega), lot-based trading and ₹10L virtual capital, with 800ms live price updates.",
@@ -185,7 +185,7 @@ export const myProjects = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "RailGaadi – Live Indian Train Tracking Platform",
     description:
       "Real-time Indian train tracking platform with interactive MapLibre maps, 30-second live updates, station-wise ETA and delays, weather, terrain, and elevation analytics with resilient API fallbacks.",
@@ -249,7 +249,7 @@ export const myProjects = [
   },
   ,
   {
-    id: 4,
+    id: 5,
     title: "Frontix – Open Source npm Package",
     description:
       "A modern, lightweight utility toolkit for frontend developers, offering 25+ utilities for string, date, validation, async, and deep object operations. Built with TypeScript (ESM + CJS), tree-shakable, and published on npm.",
@@ -374,7 +374,7 @@ export const myProjects = [
   //   ],
   // },
   {
-    id: 5,
+    id: 6,
     title: "EnvShare – Secure Environment Sharing Tool",
     description:
       "A lightweight and secure tool for sharing environment variables with AES-GCM encryption, auto-expiration, and read limits — all in a privacy-first architecture.",
@@ -418,7 +418,7 @@ export const myProjects = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     title: "Modifio – Free File Converter",
     description:
       "A sleek and powerful online tool for unlimited multimedia file conversions including video, audio, and image formats.",

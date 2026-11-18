@@ -67,16 +67,23 @@ body {
 }
 
 .space-section::after {
-  width: min(34vw, 420px);
-  aspect-ratio: 1;
-  top: 8%;
-  right: -9%;
-  border: 1px solid rgba(103, 232, 249, 0.055);
-  border-radius: 50%;
-  box-shadow:
-    0 0 70px rgba(34, 211, 238, 0.035),
-    inset 0 0 70px rgba(34, 211, 238, 0.025);
-  transform: rotate(-24deg) scaleY(0.42);
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .space-section::after {
+    display: block;
+    width: min(34vw, 420px);
+    aspect-ratio: 1;
+    top: 8%;
+    right: -9%;
+    border: 1px solid rgba(103, 232, 249, 0.055);
+    border-radius: 50%;
+    box-shadow:
+      0 0 70px rgba(34, 211, 238, 0.035),
+      inset 0 0 70px rgba(34, 211, 238, 0.025);
+    transform: rotate(-24deg) scaleY(0.42);
+  }
 }
 
 .space-section > .max-w-7xl {

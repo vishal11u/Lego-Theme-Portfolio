@@ -26,8 +26,9 @@ import {
   SiStorybook,
   SiRedis,
   SiReactquery,
-  SiOpenai,
 } from "react-icons/si";
+import { AiOutlineOpenAI } from "react-icons/ai";
+
 import { RiTailwindCssFill, RiSupabaseFill } from "react-icons/ri";
 import { BiLogoPostgresql, BiLogoFirebase } from "react-icons/bi";
 import { TbBrandReactNative } from "react-icons/tb";
@@ -792,7 +793,7 @@ const About = () => {
       name: "AI Agents & LLMs",
       category: "AI",
       color: "text-[#10A37F]",
-      icon: <SiOpenai />,
+      icon: <AiOutlineOpenAI />,
     },
   ];
 
